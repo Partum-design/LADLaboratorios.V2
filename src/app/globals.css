@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lad-red: #e30613;
+  --lad-red-dark: #a63336;
+  --lad-red-light: #f56a6e;
+  --lad-black: #201e1e;
+  --lad-gray-light: #f6f3f2;
+  --lad-white: #fefefe;
+  --ease-lad: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--lad-white);
+  color: var(--lad-black);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--lad-red);
+  color: #fff;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--lad-red);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--lad-gray-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--lad-red);
+}
+
+@layer components {
+  .container-lad {
+    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-lad-red;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-8 bg-lad-red;
+  }
+
+  .heading-xl {
+    @apply font-display text-5xl font-semibold leading-[0.98] tracking-[-0.02em] sm:text-6xl lg:text-[5.25rem];
+  }
+
+  .heading-lg {
+    @apply font-display text-4xl font-semibold leading-[1.02] tracking-[-0.015em] sm:text-5xl lg:text-6xl;
+  }
+
+  .heading-md {
+    @apply font-display text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl;
+  }
+
+  .body-lg {
+    @apply text-base leading-relaxed text-lad-gray-mid sm:text-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-lad-red px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition-all duration-500 ease-lad hover:bg-lad-red-dark hover:shadow-red;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2 bg-white px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-lad-black shadow-glass-sm transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:shadow-glass;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-lad-black/20 bg-transparent px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-lad-black transition-all duration-500 ease-lad hover:border-lad-red hover:text-lad-red;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 border border-white/30 bg-transparent px-7 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition-all duration-500 ease-lad hover:border-white hover:bg-white hover:text-lad-black;
+  }
+
+  .glass-card {
+    @apply border border-white/60 bg-white/80 shadow-glass backdrop-blur-xl;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 border border-lad-black/10 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-lad-black;
+  }
+
+  .rail-red {
+    @apply relative pl-6;
+  }
+
+  .rail-red::before {
+    content: "";
+    @apply absolute bottom-0 left-0 top-0 w-1 bg-lad-red;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-lad hover:-translate-y-1.5 hover:shadow-glass;
+  }
+
+  .video-frame {
+    @apply overflow-hidden rounded-2xl shadow-glass;
+  }
+
+  .border-lad {
+    @apply border-l-4 border-lad-red bg-white p-8 shadow-glass-sm;
+  }
+
+  .hairline {
+    @apply border-t border-lad-black/10;
+  }
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(32, 30, 30, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 30, 30, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(32, 30, 30, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(32, 30, 30, 0.16);
+  color: transparent;
+}
+
+.testimonial-scroll {
+  animation: marquee-y var(--marquee-duration, 20s) linear infinite;
+}
+
+@keyframes marquee-y {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
