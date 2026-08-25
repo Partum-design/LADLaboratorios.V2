@@ -47,8 +47,8 @@ function formatearFecha(valor: string | null, conHora = true): string | null {
 function Linea({ etiqueta, valor }: { etiqueta: string; valor: string | null }) {
   if (!valor) return null;
   return (
-    <div className="border-t border-gray-200 py-3 first:border-t-0 first:pt-0">
-      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-400">{etiqueta}</dt>
+    <div className="border-t border-lad-black/[0.06] py-3 first:border-t-0 first:pt-0">
+      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/40">{etiqueta}</dt>
       <dd className="mt-1 text-sm font-medium text-lad-black">{valor}</dd>
     </div>
   );
@@ -57,7 +57,7 @@ function Linea({ etiqueta, valor }: { etiqueta: string; valor: string | null }) 
 function Progreso({ etapa }: { etapa: EtapaEstudio }) {
   if (etapa === "cancelado") {
     return (
-      <div className="border-l-4 border-gray-400 bg-gray-100 px-5 py-4 text-sm font-semibold text-gray-600">
+      <div className="rounded-r-xl border-l-4 border-gray-400 bg-gray-100 px-5 py-4 text-sm font-semibold text-gray-600">
         Esta orden fue cancelada.
       </div>
     );
@@ -73,7 +73,7 @@ function Progreso({ etapa }: { etapa: EtapaEstudio }) {
         return (
           <li key={paso.clave} className="flex flex-col gap-2">
             <span
-              className={`h-1 w-full transition-colors duration-500 ${alcanzado ? "bg-lad-red" : "bg-gray-200"}`}
+              className={`h-1.5 w-full rounded-full transition-colors duration-500 ${alcanzado ? "bg-lad-red" : "bg-lad-black/10"}`}
               aria-hidden
             />
             <span
@@ -102,13 +102,13 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-10 border-2 border-gray-200 bg-white shadow-sm"
+      className="mt-10 overflow-hidden rounded-3xl bg-white shadow-glass"
     >
       {/* Encabezado */}
-      <header className="flex flex-col gap-4 border-b border-gray-200 bg-lad-black p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <header className="flex flex-col gap-4 bg-lad-black p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-lad-red">Folio {estudio.folio}</p>
-          <h3 className="mt-2 font-display text-2xl font-black leading-tight sm:text-3xl">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-lad-red-light">Folio {estudio.folio}</p>
+          <h3 className="mt-2 font-display text-2xl font-bold leading-tight sm:text-3xl">
             {estudio.estudio.nombre ?? "Estudio de imagen"}
           </h3>
           {estudio.paciente.nombreEnmascarado && (
@@ -119,7 +119,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
           )}
         </div>
         <span
-          className={`inline-flex shrink-0 items-center gap-2 border px-4 py-2 text-xs font-bold uppercase tracking-wider ${
+          className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider ${
             cancelado
               ? "border-gray-500 text-gray-300"
               : listo
@@ -153,7 +153,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
 
         {/* Descargas y visor */}
         {(estudio.documentos.length > 0 || estudio.visorUrl) && (
-          <div className="border-t border-gray-200 pt-6">
+          <div className="border-t border-lad-black/[0.06] pt-6">
             <p className="mb-4 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-400">Disponible para ti</p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               {estudio.documentos.map((documento) => {
@@ -191,7 +191,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
         )}
 
         {!listo && !cancelado && estudio.origen === "orden" && (
-          <div className="flex items-start gap-3 border border-gray-200 bg-lad-gray-light p-4">
+          <div className="flex items-start gap-3 rounded-2xl bg-lad-gray-light p-4">
             <IconChip color={ICON_COLORS.red} size="h-5 w-5"><IconClock /></IconChip>
             <p className="text-sm text-gray-600">
               Tus resultados aparecerán aquí en cuanto el médico radiólogo firme el reporte. Puedes volver a consultar
@@ -269,10 +269,10 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
 
   return (
     <div>
-      <form onSubmit={consultar} className="border-2 border-gray-200 bg-white p-6 shadow-sm sm:p-8" noValidate>
+      <form onSubmit={consultar} className="rounded-3xl bg-white p-6 shadow-glass sm:p-8" noValidate>
         <div className={`grid gap-5 ${requiereFechaNacimiento ? "sm:grid-cols-2" : ""}`}>
           <div className={requiereFechaNacimiento ? "" : "sm:max-w-xl"}>
-            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-500">
+            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
               Folio o ID de tu estudio
             </label>
             <input
@@ -286,13 +286,13 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
               autoCapitalize="characters"
               spellCheck={false}
               maxLength={80}
-              className="w-full border-2 border-gray-200 bg-white px-4 py-3.5 font-mono text-lg tracking-wide text-lad-black outline-none transition focus:border-lad-red"
+              className="w-full rounded-xl border border-lad-black/10 bg-white px-4 py-3.5 font-mono text-lg tracking-wide text-lad-black outline-none transition focus:border-lad-red"
             />
           </div>
 
           {requiereFechaNacimiento && (
             <div>
-              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-500">
+              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
                 Fecha de nacimiento del paciente
               </label>
               <input
@@ -302,7 +302,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
                 value={fechaNacimiento}
                 onChange={(evento) => setFechaNacimiento(evento.target.value)}
                 max={new Date().toISOString().slice(0, 10)}
-                className="w-full border-2 border-gray-200 bg-white px-4 py-3.5 text-lg text-lad-black outline-none transition focus:border-lad-red"
+                className="w-full rounded-xl border border-lad-black/10 bg-white px-4 py-3.5 text-lg text-lad-black outline-none transition focus:border-lad-red"
               />
             </div>
           )}
@@ -327,7 +327,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               role="alert"
-              className="mt-5 border-l-4 border-lad-red bg-red-50 px-4 py-3 text-sm font-medium text-lad-black"
+              className="mt-5 rounded-r-xl border-l-4 border-lad-red bg-red-50 px-4 py-3 text-sm font-medium text-lad-black"
             >
               {error}
             </motion.p>
@@ -346,7 +346,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
             { icono: <IconEye />, titulo: "Revisa el avance", texto: "Verás en qué etapa va tu estudio, actualizado al momento." },
             { icono: <IconResults />, titulo: "Descarga tu reporte", texto: "Cuando el radiólogo firma, el PDF queda disponible aquí." },
           ].map((paso) => (
-            <div key={paso.titulo} className="border border-gray-200 bg-white p-5">
+            <div key={paso.titulo} className="rounded-2xl bg-white p-5 shadow-glass-sm">
               <IconChip color={ICON_COLORS.red} size="h-6 w-6">{paso.icono}</IconChip>
               <p className="mt-3 font-display text-sm font-bold uppercase tracking-wide text-lad-black">{paso.titulo}</p>
               <p className="mt-1 text-sm leading-relaxed text-gray-500">{paso.texto}</p>

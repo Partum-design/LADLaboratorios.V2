@@ -2,6 +2,7 @@
 
 import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { IconBadge, IconChip } from "@/components/ui/IconBadge";
 import {
@@ -114,7 +115,7 @@ export default function UnetePage() {
   };
 
   const inputCls =
-    "border border-lad-black/10 bg-white p-3 text-sm transition focus:border-lad-red focus:outline-none";
+    "rounded-xl border border-lad-black/10 bg-white p-3.5 text-sm transition focus:border-lad-red focus:outline-none";
 
   return (
     <PageTransition>
@@ -131,14 +132,9 @@ export default function UnetePage() {
             >
               Oportunidades
             </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 36 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="heading-xl mt-6 text-lad-black"
-            >
+            <TextReveal as="h1" className="heading-xl mt-6 text-lad-black" delay={0.05}>
               Vacantes en <span className="italic text-lad-red">LAD</span>
-            </motion.h1>
+            </TextReveal>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,7 +183,7 @@ export default function UnetePage() {
           <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
             {beneficios.map((b, index) => (
               <Reveal key={b.label} delay={index * 0.08} className="h-full">
-                <div className="card-hover h-full border border-lad-black/5 bg-white p-8 text-center shadow-glass-sm hover:border-lad-red">
+                <div className="card-hover h-full rounded-2xl border border-lad-black/5 bg-white p-8 text-center shadow-glass-sm hover:border-lad-red">
                   <IconBadge color={iconColorAt(index)} className="mx-auto mb-4 h-12 w-12">
                     {b.icon}
                   </IconBadge>
@@ -211,7 +207,7 @@ export default function UnetePage() {
             <div className="space-y-4">
               {posiciones.map((posicion, index) => (
                 <Reveal key={posicion.titulo} delay={index * 0.06}>
-                  <div className="bg-white shadow-glass-sm">
+                  <div className="rounded-2xl bg-white shadow-glass-sm">
                     <button
                       type="button"
                       onClick={() => setActivePos(activePos === index ? null : index)}
@@ -263,7 +259,7 @@ export default function UnetePage() {
           {/* Formulario */}
           <div>
             <Reveal direction="right">
-              <form onSubmit={handleSubmit} className="bg-white p-6 shadow-glass md:p-8">
+              <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-6 shadow-glass md:p-8">
                 {enviado ? (
                   <div className="py-16 text-center">
                     <h2 className="heading-md mb-4">WhatsApp abierto</h2>
@@ -316,7 +312,7 @@ export default function UnetePage() {
                       value={formData.experiencia}
                       onChange={handleChange}
                     />
-                    <label className="flex cursor-pointer items-center gap-3 border border-lad-black/10 bg-white p-3 text-sm text-lad-gray-mid transition-colors hover:border-lad-red">
+                    <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-lad-black/10 bg-white p-3.5 text-sm text-lad-gray-mid transition-colors hover:border-lad-red">
                       <IconChip color={iconColorAt(4)} size="h-4 w-4">
                         <IconPaperclip />
                       </IconChip>

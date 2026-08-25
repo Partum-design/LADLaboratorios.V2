@@ -1,5 +1,6 @@
 "use client";
 
+import CtaBanner from "@/components/layout/CtaBanner";
 import PageTransition from "@/components/motion/PageTransition";
 import CatalogoClient from "@/components/sections/estudios/CatalogoClient";
 import HeroEstudios from "@/components/sections/estudios/HeroEstudios";
@@ -28,6 +29,7 @@ export default function EstudiosPage() {
       <Suspense fallback={<CatalogoSkeleton />}>
         <CatalogoClient />
       </Suspense>
+      <CtaBanner />
     </PageTransition>
   );
 }

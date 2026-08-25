@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import Link from "next/link";
 
 const rutasRapidas = [
@@ -32,17 +33,17 @@ export default function RutasRapidas() {
       <div className="mx-auto max-w-[88rem] bg-lad-black text-white lg:rounded-3xl">
         <div className="container-lad section-padding">
           <Reveal>
-            <div className="mb-12 max-w-2xl">
-              <p className="eyebrow">Accesos rápidos</p>
-              <h2 className="heading-lg mt-5 text-white">Ve directo a lo que necesitas</h2>
-            </div>
+            <p className="eyebrow">Accesos rápidos</p>
           </Reveal>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <TextReveal className="heading-lg mt-5 max-w-2xl text-white" delay={0.1}>
+            Ve directo a lo que necesitas
+          </TextReveal>
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {rutasRapidas.map((ruta, index) => (
               <Reveal key={ruta.title} delay={index * 0.08} className="h-full">
                 <Link
                   href={ruta.href}
-                  className="group flex h-full flex-col justify-between border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red hover:bg-white/[0.06]"
+                  className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red hover:bg-white/[0.06]"
                 >
                   <span className="mb-8 block h-1 w-10 bg-lad-red transition-all duration-500 ease-lad group-hover:w-16" />
                   <span>

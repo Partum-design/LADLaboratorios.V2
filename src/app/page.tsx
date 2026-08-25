@@ -1,5 +1,6 @@
 "use client";
 
+import CtaBanner from "@/components/layout/CtaBanner";
 import SectionProgressNav from "@/components/layout/SectionProgressNav";
 import PageTransition from "@/components/motion/PageTransition";
 import HeroInicio from "@/components/sections/home/HeroInicio";
@@ -9,6 +10,7 @@ import Servicios from "@/components/sections/home/Servicios";
 import StatsBand from "@/components/sections/home/StatsBand";
 import TomografoShowcase from "@/components/sections/home/TomografoShowcase";
 import Valores from "@/components/sections/home/Valores";
+import MarqueeStrip from "@/components/ui/MarqueeStrip";
 import PagoStrip from "@/components/ui/PagoStrip";
 import { TestimonialsSection } from "@/components/ui/TestimonialsColumns";
 
@@ -26,6 +28,7 @@ export default function HomePage() {
     <PageTransition>
       <SectionProgressNav items={NAV_ITEMS} />
       <HeroInicio />
+      <MarqueeStrip />
       <StatsBand />
       <PagoStrip />
       <Servicios />
@@ -34,6 +37,7 @@ export default function HomePage() {
       <RutasRapidas />
       <TestimonialsSection />
       <Valores />
+      <CtaBanner />
     </PageTransition>
   );
 }

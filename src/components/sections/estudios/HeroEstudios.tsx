@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { IconWhatsApp } from "@/components/ui/LadIcons";
 import { buildWhatsAppLink } from "@/lib/contact";
@@ -20,18 +21,13 @@ export default function HeroEstudios() {
           >
             Catálogo
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 36 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="heading-xl mt-6 text-lad-black"
-          >
+          <TextReveal as="h1" className="heading-xl mt-6 text-lad-black" delay={0.05}>
             Nuestros <span className="italic text-lad-red">Estudios</span>
-          </motion.h1>
+          </TextReveal>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="body-lg mt-6 max-w-2xl"
           >
             Consulta nuestro catálogo de más de 500 estudios con precios e indicaciones de
@@ -40,13 +36,13 @@ export default function HeroEstudios() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
           >
             <a
               href={buildWhatsAppLink("Hola, tengo una duda sobre un estudio de laboratorio. ¿Me pueden ayudar?")}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary mt-9 inline-flex items-center gap-2 !bg-[#25D366] hover:!bg-[#1ebe5a]"
+              className="btn-whatsapp mt-9 inline-flex"
             >
               <IconWhatsApp className="h-5 w-5" />
               Preguntar por WhatsApp
@@ -59,7 +55,7 @@ export default function HeroEstudios() {
             <div className="video-frame relative aspect-[16/11] w-full">
               <VideoAuto src="/vids/estudios/hero.mp4" poster="/img/lad-area-quimica.png" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-lad-black/30 to-transparent" />
-              <span className="absolute -left-0 bottom-8 top-8 w-1 bg-lad-red" aria-hidden />
+              <span className="absolute -left-0 bottom-8 top-8 w-1 rounded-full bg-lad-red" aria-hidden />
             </div>
           </Reveal>
         </div>

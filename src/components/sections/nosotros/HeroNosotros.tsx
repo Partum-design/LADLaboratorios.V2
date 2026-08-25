@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { motion } from "framer-motion";
 
@@ -18,14 +19,9 @@ export default function HeroNosotros() {
           >
             Nosotros
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 36 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="heading-xl mt-6 text-lad-black"
-          >
+          <TextReveal as="h1" className="heading-xl mt-6 text-lad-black" delay={0.05}>
             40+ años de <span className="italic text-lad-red">experiencia</span> al servicio de tu salud
-          </motion.h1>
+          </TextReveal>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

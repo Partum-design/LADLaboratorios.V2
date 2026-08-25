@@ -186,9 +186,9 @@ export default function ChatbotWidget() {
         onClick={() => setAbierto((v) => !v)}
         aria-label="Abrir asistente de LAD"
         aria-expanded={abierto}
-        className="group fixed bottom-8 right-4 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-lad-black shadow-[0_10px_28px_-8px_rgba(32,30,30,0.85)] transition-all duration-300 hover:scale-110 hover:bg-lad-red focus:outline-none focus:ring-2 focus:ring-lad-red focus:ring-offset-2 active:scale-95 sm:right-6 sm:h-16 sm:w-16"
+        className="group fixed bottom-6 right-4 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-lad-black shadow-glass transition-all duration-300 hover:scale-105 hover:bg-lad-red active:scale-95 sm:bottom-8 sm:right-6 sm:h-16 sm:w-16"
       >
-        <IconChatBot className="h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110 sm:h-8 sm:w-8" />
+        <IconChatBot className="h-6 w-6 text-white transition-transform duration-300 group-hover:scale-110 sm:h-7 sm:w-7" />
       </button>
     </>
   );

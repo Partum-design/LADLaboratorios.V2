@@ -7,6 +7,7 @@ import { IconBadge, IconChip } from "@/components/ui/IconBadge";
 import { IconEye, IconLock, IconLogin, IconScan, IconShieldCheck, IconUsers } from "@/components/ui/LadIcons";
 import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import { isBirthDateRequired } from "@/lib/eden/config";
 import { edenPortals } from "@/lib/eden-portals";
 import { ICON_COLORS } from "@/lib/icon-palette";
@@ -39,9 +40,9 @@ export default function AccederPage() {
             <p className="eyebrow">Consulta de resultados</p>
             <EdenMark size="h-4 w-4" textClassName="text-sm text-lad-gray-mid" />
           </div>
-          <h1 className="heading-xl mb-4 mt-6 text-lad-black">
+          <TextReveal as="h1" className="heading-xl mb-4 mt-6 text-lad-black">
             Tus estudios, <span className="italic text-lad-red">al momento</span>
-          </h1>
+          </TextReveal>
           <p className="body-lg max-w-2xl">
             Escribe el folio de tu estudio y consulta en qué etapa va, en qué sucursal se realizó y
             descarga tu reporte firmado en cuanto esté listo. La información viene directo de nuestro

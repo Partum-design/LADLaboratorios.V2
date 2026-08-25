@@ -3,6 +3,7 @@ import { Suspense } from "react";
 
 import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import PagoEnLineaForm from "@/components/pago/PagoEnLineaForm";
 import { IconChip } from "@/components/ui/IconBadge";
 import { IconCreditCard, IconLock, IconShieldCheck } from "@/components/ui/LadIcons";
@@ -28,9 +29,9 @@ export default function PagoEnLineaPage() {
         <div className="bg-grid absolute inset-0" aria-hidden />
         <div className="container-lad relative z-10">
           <p className="eyebrow">Pago en línea</p>
-          <h1 className="heading-xl mb-4 mt-6 text-lad-black">
+          <TextReveal as="h1" className="heading-xl mb-4 mt-6 text-lad-black">
             Paga tu estudio <span className="italic text-lad-red">directo aquí</span>
-          </h1>
+          </TextReveal>
           <p className="body-lg max-w-2xl">
             Captura tus datos bancarios y paga con tarjeta, igual que cualquier compra en línea. Sin
             WhatsApp, sin esperar a que alguien te conteste.

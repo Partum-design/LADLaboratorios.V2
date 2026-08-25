@@ -21,7 +21,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -31,107 +31,115 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
+  const glass = `border border-white/60 bg-white/75 backdrop-blur-xl transition-shadow duration-500 ${
+    scrolled ? "shadow-glass" : "shadow-glass-sm"
+  }`;
+
   return (
     <motion.header
-      initial={{ y: -24, opacity: 0 }}
+      initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled || menuOpen
-          ? "border-b border-lad-black/5 bg-white/85 shadow-glass-sm backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
     >
-      <nav className="container-lad flex h-16 items-center justify-between gap-4 sm:h-20">
-        <Link href="/" className="group flex min-w-0 items-center gap-3">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+        {/* Logo */}
+        <Link
+          href="/"
+          className={`group flex shrink-0 items-center gap-3 rounded-full py-1.5 pl-1.5 pr-5 ${glass}`}
+        >
           <Image
             src="/logo/logo-lad.png"
             alt="LAD Logo"
             width={96}
             height={96}
             priority
-            className="h-11 w-11 rounded-[22%] object-contain shadow-glass-sm transition duration-500 ease-lad group-hover:scale-95 sm:h-12 sm:w-12"
+            className="h-10 w-10 rounded-full object-contain transition duration-500 ease-lad group-hover:rotate-[-6deg] group-hover:scale-95"
           />
-          <span className="hidden leading-none sm:block">
-            <span className="block font-display text-sm font-bold uppercase tracking-[0.12em] text-lad-black">
+          <span className="hidden leading-none min-[440px]:block">
+            <span className="block font-display text-[13px] font-bold uppercase tracking-[0.12em] text-lad-black">
               Laboratorio de
             </span>
-            <span className="mt-0.5 block text-[11px] font-medium tracking-wide text-lad-black/60">
+            <span className="mt-0.5 block text-[10px] font-medium tracking-wide text-lad-black/55">
               Apoyo y Diagnóstico
             </span>
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        {/* Links centrales (desktop) */}
+        <ul className={`hidden items-center gap-1 rounded-full p-1.5 lg:flex ${glass}`}>
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <li key={link.href}>
+              <li key={link.href} className="relative">
                 <Link
                   href={link.href}
-                  className={`relative pb-1 text-xs font-bold uppercase tracking-[0.16em] transition ${
-                    isActive ? "text-lad-red" : "text-lad-black/70 hover:text-lad-red"
+                  className={`relative z-10 block rounded-full px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] transition-colors duration-300 ${
+                    isActive ? "text-white" : "text-lad-black/65 hover:text-lad-black"
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-lad-red"
-                    />
-                  )}
                 </Link>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    transition={{ type: "spring", stiffness: 320, damping: 30 }}
+                    className="absolute inset-0 rounded-full bg-lad-red shadow-red"
+                  />
+                )}
               </li>
             );
           })}
         </ul>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        {/* Acciones (desktop) */}
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
           <Link
             href="/contacto#sucursales"
-            className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-lad-black/50 transition hover:text-lad-red"
+            className={`flex items-center gap-1.5 rounded-full px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-lad-black/60 transition hover:text-lad-red ${glass}`}
           >
             <IconMapPin className="h-3.5 w-3.5" />
             Sucursales
           </Link>
           <Link
             href="/acceder#consulta"
-            className={`flex items-center gap-2 bg-lad-red px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-all duration-500 ease-lad hover:bg-lad-red-dark hover:shadow-red ${
-              pathname === "/acceder" ? "ring-2 ring-lad-red/30 ring-offset-2 ring-offset-white" : ""
-            }`}
+            className="btn-primary !px-5 !py-3 text-[11px]"
           >
             <IconSearch className="h-4 w-4" />
             Mis resultados
           </Link>
         </div>
 
+        {/* Hamburguesa (móvil) */}
         <button
           type="button"
           aria-label="Abrir menu"
           onClick={() => setMenuOpen((value) => !value)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 text-lad-black lg:hidden"
+          className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-full text-lad-black lg:hidden ${glass}`}
         >
-          <span className={`h-0.5 w-6 bg-current transition ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`h-0.5 w-6 bg-current transition ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`h-0.5 w-6 bg-current transition ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          <span className={`h-0.5 w-5 bg-current transition ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`h-0.5 w-5 bg-current transition ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`h-0.5 w-5 bg-current transition ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
       </nav>
 
+      {/* Menú móvil */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-t border-lad-black/5 bg-white lg:hidden"
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-3xl border border-white/60 bg-white/95 shadow-glass backdrop-blur-xl lg:hidden"
           >
-            <div className="container-lad flex flex-col py-4">
+            <div className="flex flex-col p-5">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`py-4 text-sm font-bold uppercase tracking-wider ${
-                    pathname === link.href ? "text-lad-red" : "text-lad-black"
+                  className={`rounded-2xl px-4 py-4 text-sm font-bold uppercase tracking-wider transition ${
+                    pathname === link.href ? "bg-lad-red/5 text-lad-red" : "text-lad-black hover:bg-lad-black/[0.03]"
                   }`}
                 >
                   {link.label}
@@ -139,15 +147,12 @@ export default function Navbar() {
               ))}
               <Link
                 href="/contacto#sucursales"
-                className="flex items-center gap-2 py-4 text-xs font-semibold uppercase tracking-wide text-lad-black/60"
+                className="flex items-center gap-2 px-4 py-4 text-xs font-semibold uppercase tracking-wide text-lad-black/60"
               >
                 <IconMapPin className="h-3.5 w-3.5" />
                 Sucursales
               </Link>
-              <Link
-                href="/acceder#consulta"
-                className="mt-2 flex items-center justify-center gap-2.5 bg-lad-red py-4 text-sm font-bold uppercase tracking-[0.16em] text-white"
-              >
+              <Link href="/acceder#consulta" className="btn-primary mt-2 w-full">
                 <IconSearch className="h-4 w-4" />
                 Consultar mis resultados
               </Link>

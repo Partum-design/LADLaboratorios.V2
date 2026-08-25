@@ -2,6 +2,7 @@
 
 import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { IconBadge, IconChip } from "@/components/ui/IconBadge";
 import {
@@ -49,14 +50,9 @@ export default function ContactoPage() {
             >
               Contáctanos
             </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 36 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="heading-xl mt-6 text-lad-black"
-            >
+            <TextReveal as="h1" className="heading-xl mt-6 text-lad-black" delay={0.05}>
               Agenda tu <span className="italic text-lad-red">cita</span>
-            </motion.h1>
+            </TextReveal>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,7 +170,7 @@ function ContactoBody() {
   };
 
   const inputCls =
-    "w-full border border-lad-black/10 bg-white p-3 text-sm transition focus:border-lad-red focus:outline-none";
+    "w-full rounded-xl border border-lad-black/10 bg-white p-3.5 text-sm transition focus:border-lad-red focus:outline-none";
 
   return (
     <>
@@ -271,7 +267,7 @@ function ContactoBody() {
           {/* Formulario */}
           <div className="lg:col-span-3">
             <Reveal direction="right">
-              <form ref={formRef} onSubmit={handleSubmit} className="bg-white p-6 shadow-glass md:p-10">
+              <form ref={formRef} onSubmit={handleSubmit} className="rounded-3xl bg-white p-6 shadow-glass md:p-10">
                 {enviado ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.96 }}
@@ -290,7 +286,7 @@ function ContactoBody() {
                 ) : (
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     {estudioParam && (
-                      <div className="form-field flex items-start gap-3 border border-lad-red/30 bg-lad-red/5 p-4 md:col-span-2">
+                      <div className="form-field flex items-start gap-3 rounded-xl border border-lad-red/30 bg-lad-red/5 p-4 md:col-span-2">
                         <IconChip color={ICON_COLORS.red} size="h-5 w-5">
                           <IconClipboard />
                         </IconChip>
@@ -343,7 +339,7 @@ function ContactoBody() {
                         required
                       />
                     </div>
-                    <label className="form-field flex items-center gap-3 border border-lad-red/30 bg-lad-red/5 p-3 text-sm font-semibold text-lad-black md:col-span-2">
+                    <label className="form-field flex items-center gap-3 rounded-xl border border-lad-red/30 bg-lad-red/5 p-3 text-sm font-semibold text-lad-black md:col-span-2">
                       <input
                         type="checkbox"
                         name="sinCita"
@@ -412,7 +408,7 @@ function ContactoBody() {
                     {formError && (
                       <p
                         role="alert"
-                        className="form-field border-l-4 border-lad-red bg-lad-red/5 px-4 py-3 text-sm font-semibold text-lad-black md:col-span-2"
+                        className="form-field rounded-r-xl border-l-4 border-lad-red bg-lad-red/5 px-4 py-3 text-sm font-semibold text-lad-black md:col-span-2"
                       >
                         {formError}
                       </p>

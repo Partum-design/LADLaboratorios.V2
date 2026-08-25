@@ -1,5 +1,6 @@
 "use client";
 
+import CtaBanner from "@/components/layout/CtaBanner";
 import PageTransition from "@/components/motion/PageTransition";
 import Areas from "@/components/sections/nosotros/Areas";
 import HeroNosotros from "@/components/sections/nosotros/HeroNosotros";
@@ -28,7 +29,10 @@ export default function NosotrosPage() {
       <section className="bg-white pb-24">
         <div className="container-lad grid grid-cols-2 gap-4 md:grid-cols-4">
           {valores.map((v, index) => (
-            <div key={v.label} className="flex items-center gap-3 bg-lad-gray-light p-5">
+            <div
+              key={v.label}
+              className="flex items-center gap-3 rounded-2xl bg-lad-gray-light p-5 transition-colors duration-500 hover:bg-white hover:shadow-glass-sm"
+            >
               <IconBadge color={iconColorAt(index + 2)} className="h-9 w-9">
                 {v.icon}
               </IconBadge>
@@ -37,6 +41,7 @@ export default function NosotrosPage() {
           ))}
         </div>
       </section>
+      <CtaBanner />
     </PageTransition>
   );
 }

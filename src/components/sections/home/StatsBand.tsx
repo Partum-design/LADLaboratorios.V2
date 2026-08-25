@@ -51,21 +51,24 @@ export default function StatsBand() {
   }, []);
 
   return (
-    <div ref={statsRef} className="border-y border-lad-black/5 bg-white">
-      <div className="container-lad grid grid-cols-2 divide-lad-black/5 md:grid-cols-4 md:divide-x">
+    <div ref={statsRef} className="bg-white py-4 sm:py-6">
+      <div className="container-lad grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
         {stats.map((stat, index) => (
-          <div key={stat.label} className="flex flex-col gap-1 px-2 py-10 text-center md:py-14">
+          <div
+            key={stat.label}
+            className="group rounded-2xl border border-lad-black/[0.06] bg-lad-gray-light/60 px-4 py-8 text-center transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red/15 hover:bg-white hover:shadow-glass sm:rounded-3xl sm:py-10"
+          >
             <span
               ref={(el) => {
                 if (el) counterRefs.current[index] = el;
               }}
               data-target={stat.value}
-              className="block font-display text-5xl font-semibold tracking-tight text-lad-black md:text-6xl"
+              className="block font-display text-4xl font-semibold tracking-tight text-lad-black transition-colors duration-500 group-hover:text-lad-red sm:text-5xl md:text-6xl"
             >
               {stat.value}
             </span>
-            <span className="mx-auto mt-2 h-px w-8 bg-lad-red" aria-hidden />
-            <span className="mt-2 text-[11px] font-bold uppercase tracking-[0.2em] text-lad-black/50">
+            <span className="mx-auto mt-4 block h-1 w-6 rounded-full bg-lad-red/70" aria-hidden />
+            <span className="mt-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-lad-black/50 sm:text-[11px]">
               {stat.label}
             </span>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { IconPackage, IconPhone, IconTestTubes } from "@/components/ui/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
@@ -37,10 +38,10 @@ export default function Servicios() {
         <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="eyebrow">Nuestros servicios</p>
-            <h2 className="heading-lg mt-5">
-              Lo que hacemos <span className="italic text-lad-red">por ti</span>
-            </h2>
           </Reveal>
+          <TextReveal className="heading-lg mt-5" delay={0.1}>
+            Lo que hacemos <span className="italic text-lad-red">por ti</span>
+          </TextReveal>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -48,7 +49,7 @@ export default function Servicios() {
             <Reveal key={servicio.title} delay={index * 0.12} className="h-full">
               <Link
                 href={servicio.href}
-                className="card-hover group flex h-full flex-col bg-white p-9"
+                className="card-hover group flex h-full flex-col rounded-3xl bg-white p-9 ring-1 ring-lad-black/[0.04]"
               >
                 <div className="flex items-start justify-between">
                   <IconBadge color={iconColorAt(index)} className="h-14 w-14">

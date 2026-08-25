@@ -89,7 +89,7 @@ export default function CatalogoClient() {
                 setActiveCat(cat);
                 setVisible(PAGE_SIZE);
               }}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+              className={`rounded-full px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition ${
                 activeCat === cat
                   ? "bg-lad-red text-white shadow-red"
                   : "bg-white text-lad-black shadow-glass-sm hover:-translate-y-0.5"
@@ -114,7 +114,7 @@ export default function CatalogoClient() {
               setVisible(PAGE_SIZE);
             }}
             placeholder="Buscar estudio por nombre..."
-            className="w-full border border-transparent bg-white py-3.5 pl-12 pr-4 text-sm shadow-glass-sm transition focus:border-lad-red focus:outline-none"
+            className="w-full rounded-full border border-transparent bg-white py-3.5 pl-12 pr-4 text-sm shadow-glass-sm transition focus:border-lad-red focus:outline-none"
           />
         </div>
 
@@ -132,7 +132,7 @@ export default function CatalogoClient() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                className="group flex flex-col border-l-4 border-transparent bg-white p-7 shadow-glass-sm transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red hover:shadow-glass"
+                className="group flex flex-col rounded-2xl border-l-4 border-transparent bg-white p-7 shadow-glass-sm transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red hover:shadow-glass"
               >
                 <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-lad-red">{estudio.cat}</p>
                 <h3 className="mb-3 font-display text-xl font-bold leading-snug text-lad-black">{estudio.nombre}</h3>
@@ -159,7 +159,7 @@ export default function CatalogoClient() {
                 </div>
                 <Link
                   href={pagoLinkFor(estudio.nombre, estudio.precio)}
-                  className="mt-4 flex items-center justify-center gap-2 bg-lad-red py-2.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-lad-red-dark"
+                  className="mt-4 flex items-center justify-center gap-2 rounded-full bg-lad-red py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-lad-red-dark"
                 >
                   <IconCreditCard className="h-4 w-4" />
                   Pagar este estudio
@@ -168,7 +168,7 @@ export default function CatalogoClient() {
                   href={whatsappLinkFor(estudio.nombre, estudio.precio)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 flex items-center justify-center gap-2 border border-[#25D366] py-2.5 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
+                  className="mt-2 flex items-center justify-center gap-2 rounded-full border border-[#25D366] py-3 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
                 >
                   <IconWhatsApp className="h-4 w-4" />
                   Preguntar por WhatsApp

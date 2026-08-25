@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import { IconBadge } from "@/components/ui/IconBadge";
 import {
   IconCulture,
@@ -54,17 +55,17 @@ export default function Areas() {
   return (
     <section className="section-padding bg-white">
       <div className="container-lad">
-        <Reveal>
-          <div className="mb-16 text-center">
-            <p className="eyebrow justify-center">Infraestructura</p>
-            <h2 className="heading-lg mt-5">
-              Nuestras áreas y <span className="italic text-lad-red">equipamiento</span>
-            </h2>
-            <p className="body-lg mx-auto mt-5 max-w-2xl">
-              Cada área tiene controles propios, personal capacitado y una ruta clara para entregar
-              resultados útiles.
-            </p>
-          </div>
+        <Reveal className="text-center">
+          <p className="eyebrow justify-center">Infraestructura</p>
+        </Reveal>
+        <TextReveal className="heading-lg mx-auto mt-5 max-w-3xl text-center" delay={0.1}>
+          Nuestras áreas y <span className="italic text-lad-red">equipamiento</span>
+        </TextReveal>
+        <Reveal delay={0.3} className="mb-16 text-center">
+          <p className="body-lg mx-auto mt-5 max-w-2xl">
+            Cada área tiene controles propios, personal capacitado y una ruta clara para entregar
+            resultados útiles.
+          </p>
         </Reveal>
 
         <div className="space-y-8 md:space-y-0">

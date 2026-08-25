@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { IconCheck, IconFocus, IconShieldCheck, IconUsers } from "@/components/ui/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
@@ -32,18 +33,16 @@ export default function Valores() {
   return (
     <section id="valores" className="section-padding bg-white">
       <div className="container-lad">
-        <Reveal>
-          <div className="mb-14 text-center">
-            <p className="eyebrow justify-center">Por qué elegirnos</p>
-            <h2 className="heading-lg mt-5">
-              Nuestros <span className="italic text-lad-red">valores</span>
-            </h2>
-          </div>
+        <Reveal className="text-center">
+          <p className="eyebrow justify-center">Por qué elegirnos</p>
         </Reveal>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <TextReveal className="heading-lg mt-5 text-center" delay={0.1}>
+          Nuestros <span className="italic text-lad-red">valores</span>
+        </TextReveal>
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {valores.map((valor, index) => (
             <Reveal key={valor.title} delay={index * 0.1} className="h-full">
-              <div className="group h-full border-l-4 border-lad-red bg-lad-gray-light p-7 transition-all duration-500 ease-lad hover:-translate-y-1.5 hover:bg-white hover:shadow-glass">
+              <div className="group h-full rounded-r-3xl border-l-4 border-lad-red bg-lad-gray-light p-7 transition-all duration-500 ease-lad hover:-translate-y-1.5 hover:bg-white hover:shadow-glass">
                 <IconBadge color={iconColorAt(index)} className="mb-5 h-10 w-10">
                   {valor.icon}
                 </IconBadge>

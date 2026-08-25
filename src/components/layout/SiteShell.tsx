@@ -4,7 +4,6 @@ import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import FloatingButtons from "@/components/FloatingButtons";
-import PayOnlineBanner from "@/components/PayOnlineBanner";
 import LenisProvider from "@/components/motion/LenisProvider";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -18,7 +17,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <Preloader />
       <FloatingButtons />
       <ChatbotWidget />
-      <PayOnlineBanner />
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <main key={pathname} className="min-h-screen">
