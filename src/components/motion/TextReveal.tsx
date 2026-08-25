@@ -44,8 +44,19 @@ export default function TextReveal({
       {units.map((unit, i) => (
         <Fragment key={i}>
           <span
-            className="inline-block overflow-hidden pb-[0.12em] align-bottom"
-            style={{ marginBottom: "-0.12em" }}
+            className="inline-block overflow-hidden align-bottom"
+            style={{
+              // line-height propio (independiente del leading apretado del heading)
+              // para que acentos, ascendentes/descendentes e itálicas no se recorten;
+              // los márgenes negativos absorben el espacio extra sin abrir el interlineado.
+              lineHeight: 1.4,
+              paddingLeft: "0.02em",
+              paddingRight: "0.16em",
+              marginTop: "-0.2em",
+              marginBottom: "-0.2em",
+              marginLeft: "-0.02em",
+              marginRight: "-0.1em",
+            }}
           >
             <motion.span
               className="inline-block will-change-transform"

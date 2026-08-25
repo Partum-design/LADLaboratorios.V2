@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { IconWhatsApp } from "@/components/ui/LadIcons";
 import { buildWhatsAppLink } from "@/lib/contact";
@@ -10,7 +11,7 @@ import { motion } from "framer-motion";
 export default function HeroEstudios() {
   return (
     <section className="relative overflow-hidden bg-lad-white pb-16 pt-32 sm:pt-36 lg:pb-20">
-      <div className="bg-grid absolute inset-0" aria-hidden />
+      <AmbientGlow />
       <div className="container-lad relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <motion.p

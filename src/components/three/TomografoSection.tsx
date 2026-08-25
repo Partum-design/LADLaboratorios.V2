@@ -8,22 +8,25 @@ import { Component, useEffect, useLayoutEffect, useRef, useState, type ReactNode
 import { invalidate } from "@react-three/fiber";
 import TomografoCanvas, { type TomografoAnnotation } from "./TomografoCanvas";
 
+// Posiciones dentro de una zona segura (cerca del centro de encuadre) para
+// que las tarjetas, que se extienden hacia la derecha del punto, nunca
+// salgan del viewport sin importar el tamaño de pantalla.
 const ANNOTATIONS: TomografoAnnotation[] = [
   {
-    position: [1.25, 2.45, 0.2],
-    threshold: 0.12,
+    position: [0.15, 1.85, 0.1],
+    threshold: 0.14,
     title: "Rayos X y tomografía 24/7",
     sub: "los 365 días del año",
   },
   {
-    position: [1.5, 1.5, 0.5],
-    threshold: 0.42,
+    position: [0.35, 1.15, 0.55],
+    threshold: 0.45,
     title: "30 estudios de tomografía",
     sub: "disponibles en nuestro catálogo",
   },
   {
-    position: [0.4, 0.5, 1.5],
-    threshold: 0.68,
+    position: [-0.15, 0.55, 0.9],
+    threshold: 0.72,
     title: "TAC de cráneo, tórax y abdomen",
     sub: "simple y contrastada",
   },
@@ -169,7 +172,11 @@ export default function TomografoSection() {
       <div ref={wrapRef} className="relative h-[350vh]">
         <div ref={stageRef} className="relative h-screen w-full overflow-hidden">
           {/* Fondo */}
-          <div className="bg-dots absolute inset-0 opacity-60" aria-hidden />
+          <div
+            className="absolute -left-20 top-0 h-[420px] w-[420px] rounded-full opacity-[0.06]"
+            style={{ background: "radial-gradient(circle, #E30613 0%, transparent 68%)" }}
+            aria-hidden
+          />
           <div
             className="absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-lad-red/15"
             aria-hidden

@@ -5,6 +5,7 @@ import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
 import PagoEnLineaForm from "@/components/pago/PagoEnLineaForm";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import { IconChip } from "@/components/ui/IconBadge";
 import { IconCreditCard, IconLock, IconShieldCheck } from "@/components/ui/LadIcons";
 import { ICON_COLORS } from "@/lib/icon-palette";
@@ -26,7 +27,7 @@ export default function PagoEnLineaPage() {
   return (
     <PageTransition>
       <section className="relative overflow-hidden bg-lad-white pb-16 pt-32 sm:pt-36">
-        <div className="bg-grid absolute inset-0" aria-hidden />
+        <AmbientGlow />
         <div className="container-lad relative z-10">
           <p className="eyebrow">Pago en línea</p>
           <TextReveal as="h1" className="heading-xl mb-4 mt-6 text-lad-black">

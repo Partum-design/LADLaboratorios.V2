@@ -1,5 +1,6 @@
 "use client";
 
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { gsap } from "@/components/motion/gsap";
 import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
@@ -47,13 +48,7 @@ export default function HeroInicio() {
       ref={heroRef}
       className="relative flex min-h-screen items-center overflow-hidden bg-lad-white pb-20 pt-28 sm:pt-32 lg:pb-24"
     >
-      {/* Fondo editorial: retícula sutil + halo rojo */}
-      <div className="bg-grid absolute inset-0" aria-hidden />
-      <div
-        className="absolute -right-40 -top-40 h-[560px] w-[560px] rounded-full opacity-[0.07]"
-        style={{ background: "radial-gradient(circle, #E30613 0%, transparent 65%)" }}
-        aria-hidden
-      />
+      <AmbientGlow />
 
       <div className="container-lad relative z-10 grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
         {/* Columna editorial */}

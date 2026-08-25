@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import AvatarInitials from "@/components/ui/AvatarInitials";
+import Reveal from "@/components/motion/Reveal";
+import TextReveal from "@/components/motion/TextReveal";
 
 type Testimonial = {
   text: string;
@@ -17,7 +19,7 @@ export const TestimonialsColumn = (props: {
   return (
     <div className={props.className}>
       <div
-        className="testimonial-scroll flex flex-col gap-5 pb-5"
+        className="testimonial-scroll group flex flex-col gap-5 pb-5"
         style={{ animationDuration: `${props.duration || 10}s` }}
       >
         {[...new Array(2).fill(0).map((_, index) => (
@@ -25,13 +27,17 @@ export const TestimonialsColumn = (props: {
             {props.testimonials.map(({ text, name, role }, i) => (
               <div
                 key={i}
-                className="relative w-full max-w-xs overflow-hidden rounded-2xl border border-lad-black/5 bg-white p-6 shadow-glass-sm"
+                className="relative w-full max-w-xs overflow-hidden rounded-3xl border-l-4 border-lad-red bg-white p-6 shadow-glass-sm transition-shadow duration-500 [animation-play-state:running] group-hover:[animation-play-state:paused] hover:!shadow-glass"
               >
-                <div className="absolute left-0 top-0 h-0.5 w-full bg-lad-red/30" />
-                <span className="mb-1 block select-none font-display text-5xl font-bold leading-none text-lad-red/15">&ldquo;</span>
-                <p className="text-sm leading-relaxed text-lad-black/80">{text}</p>
-                <div className="mt-5 flex items-center gap-3 border-t border-lad-black/5 pt-4">
-                  <AvatarInitials name={name} className="h-10 w-10 ring-2 ring-lad-red/10" />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-2 -top-5 select-none font-display text-8xl font-semibold leading-none text-lad-red/[0.07]"
+                >
+                  &rdquo;
+                </span>
+                <p className="relative text-sm leading-relaxed text-lad-black/80">{text}</p>
+                <div className="relative mt-5 flex items-center gap-3 border-t border-lad-black/5 pt-4">
+                  <AvatarInitials name={name} className="h-10 w-10 shrink-0 ring-2 ring-white ring-offset-2 ring-offset-lad-red/10" />
                   <div className="flex flex-col">
                     <span className="text-sm font-bold leading-5 tracking-tight text-lad-black">{name}</span>
                     <span className="text-xs leading-5 tracking-tight text-lad-red">{role}</span>
@@ -100,22 +106,23 @@ const thirdColumn = testimonials.slice(6, 9);
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonios" className="section-padding overflow-hidden bg-lad-gray-light">
-      <div className="container-lad">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="mb-12 flex flex-col items-center text-center"
-        >
+    <section id="testimonios" className="relative section-padding overflow-hidden bg-lad-gray-light">
+      <AmbientGlow />
+      <div className="container-lad relative z-10">
+        <Reveal className="mb-12 flex flex-col items-center text-center">
           <p className="eyebrow justify-center">Testimonios</p>
-          <h2 className="heading-lg mt-5">Lo que dicen <span className="text-lad-red">nuestros pacientes</span></h2>
-          <p className="body-lg mt-4">Pacientes, médicos y empresas que confían en LAD cada día.</p>
-        </motion.div>
+        </Reveal>
+        <TextReveal as="h2" className="heading-lg mx-auto max-w-2xl text-center" delay={0.1}>
+          Lo que dicen <span className="italic text-lad-red">nuestros pacientes</span>
+        </TextReveal>
+        <Reveal delay={0.25} className="text-center">
+          <p className="body-lg mx-auto mt-4 max-w-xl">
+            Pacientes, médicos y empresas que confían en LAD cada día.
+          </p>
+        </Reveal>
 
         <div
-          className="flex max-h-[700px] justify-center gap-5 overflow-hidden"
+          className="mt-14 flex max-h-[700px] justify-center gap-5 overflow-hidden"
           style={{ maskImage: "linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)" }}
         >
           <TestimonialsColumn testimonials={firstColumn} duration={18} />

@@ -208,17 +208,6 @@ body::after {
   }
 }
 
-.bg-grid {
-  background-image: linear-gradient(rgba(32, 30, 30, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32, 30, 30, 0.04) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-.bg-dots {
-  background-image: radial-gradient(rgba(32, 30, 30, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
 .text-outline {
   -webkit-text-stroke: 1px rgba(32, 30, 30, 0.16);
   color: transparent;

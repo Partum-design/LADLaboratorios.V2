@@ -14,9 +14,8 @@ interface StageRefProps {
 }
 
 /** Modelo normalizado: centrado, apoyado en y=0 y escalado a ~3 unidades. */
-function TomografoModel({ progressRef }: StageRefProps) {
+function TomografoModel() {
   const { scene } = useGLTF(TOMOGRAFO_MODEL_URL);
-  const group = useRef<THREE.Group>(null);
 
   // Centrado en el origen y escalado a ~3 unidades, con la base sobre y=0.
   const { scale, lift } = useMemo(() => {
@@ -29,32 +28,15 @@ function TomografoModel({ progressRef }: StageRefProps) {
     return { scale: s, lift: (size.y / 2) * s };
   }, [scene]);
 
-  useFrame(() => {
-    const g = group.current;
-    if (!g) return;
-    const p = easeInOut(progressRef.current);
-    // Giro sutil del modelo complementando la órbita de cámara.
-    g.rotation.y = THREE.MathUtils.lerp(-0.12, 0.35, p);
-  });
-
   return (
-    <group ref={group} position={[0, lift, 0]} scale={scale}>
+    <group position={[0, lift, 0]} scale={scale}>
       <primitive object={scene} />
     </group>
   );
 }
 
 /** Fallback procedural: gantry + camilla construidos con primitivas. */
-export function TomografoProcedural({ progressRef }: StageRefProps) {
-  const group = useRef<THREE.Group>(null);
-
-  useFrame(() => {
-    const g = group.current;
-    if (!g) return;
-    const p = easeInOut(progressRef.current);
-    g.rotation.y = THREE.MathUtils.lerp(-0.12, 0.35, p);
-  });
-
+export function TomografoProcedural() {
   const white = new THREE.MeshStandardMaterial({ color: "#f4f2f1", roughness: 0.32, metalness: 0.05 });
   const red = new THREE.MeshStandardMaterial({
     color: "#E30613",
@@ -65,7 +47,7 @@ export function TomografoProcedural({ progressRef }: StageRefProps) {
   const dark = new THREE.MeshStandardMaterial({ color: "#201E1E", roughness: 0.6 });
 
   return (
-    <group ref={group}>
+    <group>
       {/* Gantry */}
       <mesh material={white} position={[0, 1.15, -0.55]}>
         <torusGeometry args={[0.95, 0.42, 32, 64]} />
@@ -94,16 +76,29 @@ export function TomografoProcedural({ progressRef }: StageRefProps) {
   );
 }
 
+/** Cámara con un barrido suave y acotado: mantiene todo dentro de cuadro. */
 function Rig({ progressRef }: StageRefProps) {
   useFrame(({ camera }) => {
     const p = easeInOut(progressRef.current);
-    const azimuth = THREE.MathUtils.lerp(0.85, -0.45, p);
-    const radius = THREE.MathUtils.lerp(6.6, 5.2, p);
-    const height = THREE.MathUtils.lerp(2.1, 1.25, p);
+    const azimuth = THREE.MathUtils.lerp(0.32, 0.02, p);
+    const radius = THREE.MathUtils.lerp(5.8, 5.1, p);
+    const height = THREE.MathUtils.lerp(1.65, 1.35, p);
     camera.position.set(Math.sin(azimuth) * radius, height, Math.cos(azimuth) * radius);
-    camera.lookAt(-0.25, 1.0, 0);
+    camera.lookAt(0, 1.05, 0.1);
   });
   return null;
+}
+
+/** Grupo que gira sutilmente: modelo y anotaciones comparten la misma rotación,
+ * así las anotaciones se quedan pegadas a la superficie que señalan. */
+function RotatingRig({ progressRef, children }: StageRefProps & { children: React.ReactNode }) {
+  const group = useRef<THREE.Group>(null);
+  useFrame(() => {
+    if (!group.current) return;
+    const p = easeInOut(progressRef.current);
+    group.current.rotation.y = THREE.MathUtils.lerp(-0.06, 0.14, p);
+  });
+  return <group ref={group}>{children}</group>;
 }
 
 export interface TomografoAnnotation {
@@ -132,7 +127,7 @@ function Annotations({
   return (
     <>
       {annotations.map((a, i) => (
-        <Html key={a.title} position={a.position} center zIndexRange={[30, 0]}>
+        <Html key={a.title} position={a.position} center zIndexRange={[30, 0]} occlude={false}>
           <div
             ref={(el) => {
               refs.current[i] = el;
@@ -169,7 +164,7 @@ export default function TomografoCanvas({ progressRef, annotations, procedural =
     <Canvas
       dpr={[1, 1.75]}
       frameloop="demand"
-      camera={{ fov: 32, position: [3.6, 1.7, 2.8], near: 0.1, far: 30 }}
+      camera={{ fov: 32, position: [1.8, 1.65, 5.6], near: 0.1, far: 30 }}
       gl={{ powerPreference: "high-performance", antialias: true, alpha: true }}
       className="!absolute inset-0"
     >
@@ -179,15 +174,13 @@ export default function TomografoCanvas({ progressRef, annotations, procedural =
       <directionalLight position={[0, 4, -6]} intensity={0.4} />
 
       <Suspense fallback={null}>
-        {procedural ? (
-          <TomografoProcedural progressRef={progressRef} />
-        ) : (
-          <TomografoModel progressRef={progressRef} />
-        )}
+        <RotatingRig progressRef={progressRef}>
+          {procedural ? <TomografoProcedural /> : <TomografoModel />}
+          <Annotations progressRef={progressRef} annotations={annotations} />
+        </RotatingRig>
         <ContactShadows position={[0, 0, 0]} opacity={0.34} scale={9} blur={2.6} far={3} resolution={512} />
       </Suspense>
 
-      <Annotations progressRef={progressRef} annotations={annotations} />
       <Rig progressRef={progressRef} />
     </Canvas>
   );

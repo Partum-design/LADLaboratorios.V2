@@ -8,6 +8,7 @@ import { IconEye, IconLock, IconLogin, IconScan, IconShieldCheck, IconUsers } fr
 import PageTransition from "@/components/motion/PageTransition";
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import { isBirthDateRequired } from "@/lib/eden/config";
 import { edenPortals } from "@/lib/eden-portals";
 import { ICON_COLORS } from "@/lib/icon-palette";
@@ -34,7 +35,7 @@ export default function AccederPage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden bg-lad-white pb-16 pt-32 sm:pt-36">
-        <div className="bg-grid absolute inset-0" aria-hidden />
+        <AmbientGlow />
         <div className="container-lad relative z-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="eyebrow">Consulta de resultados</p>

@@ -1,11 +1,12 @@
 "use client";
 
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-lad-white">
-      <div className="bg-grid absolute inset-0" aria-hidden />
+      <AmbientGlow />
       <div className="container-lad relative z-10 py-32 text-center">
         <p className="font-display text-[26vw] font-semibold leading-none text-lad-black/[0.05] sm:text-[16rem]">
           404

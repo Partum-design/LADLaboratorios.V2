@@ -46,17 +46,17 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className={`group flex shrink-0 items-center gap-3 rounded-full py-1.5 pl-1.5 pr-5 ${glass}`}
+          className={`group flex shrink-0 items-center gap-3 rounded-full py-2 pl-2 pr-6 ${glass}`}
         >
           <Image
             src="/logo/logo-lad.png"
             alt="LAD Logo"
-            width={96}
-            height={96}
+            width={112}
+            height={112}
             priority
-            className="h-10 w-10 rounded-full object-contain transition duration-500 ease-lad group-hover:rotate-[-6deg] group-hover:scale-95"
+            className="h-12 w-12 rounded-[22%] object-contain transition duration-500 ease-lad group-hover:rotate-[-6deg] group-hover:scale-95 sm:h-14 sm:w-14"
           />
-          <span className="hidden leading-none min-[440px]:block">
+          <span className="hidden text-center leading-none min-[440px]:block">
             <span className="block font-display text-[13px] font-bold uppercase tracking-[0.12em] text-lad-black">
               Laboratorio de
             </span>
