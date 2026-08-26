@@ -2,7 +2,8 @@
 
 import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
-import { gsap } from "@/components/motion/gsap";
+import { EASE, gsap } from "@/components/motion/gsap";
+import Reveal from "@/components/motion/Reveal";
 import { LAD_METEPEC_MAPS_LINK } from "@/lib/contact";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -14,6 +15,17 @@ const heroStats = [
   { value: "24/7", label: "Rayos X y tomografía" },
   { value: "ISO", label: "Sistema de calidad 9001:2015" },
 ];
+
+function HeroStatCard({ stat }: { stat: (typeof heroStats)[number] }) {
+  return (
+    <>
+      <span className="block font-display text-2xl font-bold text-lad-black">{stat.value}</span>
+      <span className="mt-1 block text-[10px] font-bold uppercase leading-tight tracking-wide text-lad-gray-mid">
+        {stat.label}
+      </span>
+    </>
+  );
+}
 
 export default function HeroInicio() {
   const heroRef = useRef<HTMLElement>(null);
@@ -68,7 +80,7 @@ export default function HeroInicio() {
             <motion.a
               initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, ease: EASE }}
               href={LAD_METEPEC_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
@@ -84,7 +96,7 @@ export default function HeroInicio() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
               className="heading-xl mt-6 text-white"
             >
               Resultados
@@ -112,18 +124,23 @@ export default function HeroInicio() {
             </motion.h1>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-xs text-sm leading-relaxed text-white/70 lg:pt-4 lg:text-right"
-          >
-            Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
-            certificados y gente que sí se toma el tiempo de explicarte.
-          </motion.p>
+          <Reveal delay={0.25} className="max-w-xs lg:pt-4">
+            <p className="text-sm leading-relaxed text-white/80 lg:text-right">
+              Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
+              certificados y gente que sí se toma el tiempo de explicarte.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Tarjetas de confianza, centradas a la derecha */}
+        {/* Tarjetas de confianza: grid visible en móvil, flotantes ancladas a la derecha en desktop */}
+        <div className="relative z-10 grid grid-cols-2 gap-3 px-5 pb-8 sm:px-8 lg:hidden">
+          {heroStats.map((stat) => (
+            <div key={stat.value} className="glass-card rounded-2xl px-5 py-4">
+              <HeroStatCard stat={stat} />
+            </div>
+          ))}
+        </div>
+
         <div className="absolute inset-y-0 right-6 z-10 hidden flex-col justify-center gap-4 lg:right-10 lg:flex xl:right-40">
           {heroStats.map((stat, index) => (
             <motion.div
@@ -132,22 +149,14 @@ export default function HeroInicio() {
               transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
               className="glass-card w-44 rounded-2xl px-5 py-4"
             >
-              <span className="block font-display text-2xl font-bold text-lad-black">{stat.value}</span>
-              <span className="mt-1 block text-[10px] font-bold uppercase leading-tight tracking-wide text-lad-black/50">
-                {stat.label}
-              </span>
+              <HeroStatCard stat={stat} />
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* CTA principal, a caballo entre el panel y la página */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 -mt-7 flex justify-center px-4 sm:-mt-8"
-      >
+      <Reveal delay={0.5} className="relative z-20 -mt-7 flex justify-center px-4 sm:-mt-8">
         <Link
           href="/estudios#catalogo"
           className="group/pill inline-flex items-center gap-4 rounded-full bg-lad-black py-1.5 pl-7 pr-1.5 text-white shadow-glass transition-all duration-500 ease-lad hover:-translate-y-1 hover:shadow-red"
@@ -168,7 +177,7 @@ export default function HeroInicio() {
             </svg>
           </span>
         </Link>
-      </motion.div>
+      </Reveal>
     </section>
   );
 }

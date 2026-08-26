@@ -39,7 +39,7 @@ export default function Footer() {
                 className="h-14 w-14 rounded-[22%] object-contain"
               />
               <div>
-                <p className="font-display text-sm font-bold uppercase tracking-wider">Laboratorio de</p>
+                <p className="text-sm font-bold uppercase tracking-wider">Laboratorio de</p>
                 <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnóstico</p>
               </div>
             </Link>

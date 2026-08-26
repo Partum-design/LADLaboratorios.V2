@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { IconChatBot, IconSend, IconSparkles, IconWhatsApp } from "@/components/ui/LadIcons";
+import { EASE } from "@/components/motion/gsap";
 
 type Accion =
   | { type: "navigate"; href: string; motivo?: string }
@@ -28,7 +29,7 @@ function ActionButton({ accion, onNavigate }: { accion: Accion; onNavigate: (hre
         href={accion.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-2 flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-3.5 py-2 text-xs font-bold text-white transition hover:bg-[#1ebe5a]"
+        className="mt-2 flex w-fit items-center gap-2 rounded-full bg-[var(--whatsapp-green)] px-3.5 py-2 text-xs font-bold text-white transition hover:bg-[var(--whatsapp-green-dark)]"
       >
         <IconWhatsApp className="h-4 w-4" />
         Hablar con alguien de LAD
@@ -107,7 +108,7 @@ export default function ChatbotWidget() {
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97, transition: { duration: 0.15 } }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.28, ease: EASE }}
             role="dialog"
             aria-modal="true"
             aria-labelledby="chatbot-title"
@@ -120,7 +121,7 @@ export default function ChatbotWidget() {
                   <IconSparkles className="h-5 w-5" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h2 id="chatbot-title" className="font-display text-sm font-black leading-snug text-white">
+                  <h2 id="chatbot-title" className="text-sm font-black leading-snug text-white">
                     Asistente LAD
                   </h2>
                   <p className="text-[11px] text-white/60">Estudios, precios, pagos y resultados</p>
@@ -153,7 +154,7 @@ export default function ChatbotWidget() {
               ))}
               {enviando && (
                 <div className="flex justify-start">
-                  <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm text-gray-400 shadow-[0_1px_2px_rgba(11,20,26,0.12)]">
+                  <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm text-lad-gray-mid shadow-[0_1px_2px_rgba(11,20,26,0.12)]">
                     Escribiendo…
                   </div>
                 </div>

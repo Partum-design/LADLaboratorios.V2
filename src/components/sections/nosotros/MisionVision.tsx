@@ -21,7 +21,7 @@ export default function MisionVision() {
                   </IconChip>
                   <p className="eyebrow !text-lad-red">Misión</p>
                 </div>
-                <h3 className="mb-3 font-display text-2xl font-bold text-lad-black">Qué nos mueve</h3>
+                <h3 className="mb-3 heading-sm text-lad-black">Qué nos mueve</h3>
                 <p className="leading-relaxed text-lad-gray-mid">
                   Entregar resultados confiables y oportunos para apoyar decisiones médicas.
                 </p>
@@ -35,7 +35,7 @@ export default function MisionVision() {
                   </IconChip>
                   <p className="eyebrow !text-lad-red">Visión</p>
                 </div>
-                <h3 className="mb-3 font-display text-2xl font-bold text-lad-black">Hacia dónde vamos</h3>
+                <h3 className="mb-3 heading-sm text-lad-black">Hacia dónde vamos</h3>
                 <p className="leading-relaxed text-lad-gray-mid">
                   Crecer como laboratorio regional con procesos claros, buen trato y mejora continua certificada.
                 </p>
@@ -46,7 +46,7 @@ export default function MisionVision() {
 
         <Reveal direction="right">
           <Parallax yPercent={10}>
-            <div className="relative h-[420px] overflow-hidden rounded-2xl shadow-glass lg:h-[560px]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-glass sm:aspect-[3/4] lg:aspect-[8/9]">
               <Image
                 src="/img/lad-hero-laboratorio.png"
                 alt="Equipo clínico de LAD"

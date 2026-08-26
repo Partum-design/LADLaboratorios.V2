@@ -84,7 +84,7 @@ export default function HistoriaTimeline() {
               </span>
               <span className="block h-1 w-10 bg-lad-red transition-all duration-500 ease-lad group-hover:w-16" />
               <p className="mt-8 font-display text-5xl font-semibold text-lad-red md:text-6xl">{hito.año}</p>
-              <h3 className="mt-3 font-display text-2xl font-bold">{hito.titulo}</h3>
+              <h3 className="mt-3 heading-sm">{hito.titulo}</h3>
               <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-400">{hito.desc}</p>
             </article>
           ))}

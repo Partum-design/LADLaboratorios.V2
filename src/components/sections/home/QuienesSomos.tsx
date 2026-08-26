@@ -44,7 +44,7 @@ export default function QuienesSomos() {
         <div className="order-1 lg:order-2">
           <Reveal direction="right">
             <Parallax yPercent={10}>
-              <div className="video-frame group relative aspect-[4/3] w-full lg:aspect-auto lg:h-[540px]">
+              <div className="video-frame group relative aspect-[4/3] w-full lg:aspect-[8/9]">
                 <VideoAuto
                   src="/vids/inicio/quienes-somos-recortado.mp4"
                   poster="/img/lad-hero-laboratorio.png"

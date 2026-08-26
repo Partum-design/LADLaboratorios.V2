@@ -120,7 +120,7 @@ export default function AccederPage() {
                       <IconBadge color={ICON_COLORS.red}>
                         <Icon />
                       </IconBadge>
-                      <h3 className="mb-1 mt-5 font-display text-lg font-black lowercase">
+                      <h3 className="mb-1 mt-5 heading-sm lowercase">
                         eden <span className="font-light">{portal.suffix}</span>
                       </h3>
                       <p className="text-[0.65rem] font-bold uppercase tracking-wider text-lad-red-light">

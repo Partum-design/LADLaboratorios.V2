@@ -25,7 +25,7 @@ import {
   LAD_WHATSAPP_LINK,
 } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
-import { gsap } from "@/components/motion/gsap";
+import { EASE, gsap } from "@/components/motion/gsap";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 
@@ -46,7 +46,7 @@ export default function ContactoPage() {
             <motion.p
               initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: EASE }}
               className="eyebrow"
             >
               Contáctanos
@@ -57,7 +57,7 @@ export default function ContactoPage() {
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
               className="body-lg mt-6 max-w-xl"
             >
               Escríbenos por WhatsApp o déjanos tus datos. Te orientamos con horarios y preparación
@@ -180,7 +180,7 @@ function ContactoBody() {
           {/* Información de contacto */}
           <div className="space-y-8 lg:col-span-2">
             <Reveal direction="left">
-              <h2 className="heading-md mb-6">
+              <h2 className="heading-lg mb-6">
                 Información de <span className="italic text-lad-red">contacto</span>
               </h2>
               <div className="space-y-5 text-sm">
@@ -235,7 +235,7 @@ function ContactoBody() {
                   <IconChip color={iconColorAt(3)} size="h-5 w-5">
                     <IconClock />
                   </IconChip>
-                  <h3 className="font-display text-lg font-bold">Horario de atención</h3>
+                  <h3 className="heading-sm">Horario de atención</h3>
                 </div>
                 {horarios.map((h) => (
                   <div key={h.dia} className="flex justify-between border-b border-lad-black/5 py-2 text-sm">
@@ -275,10 +275,10 @@ function ContactoBody() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="py-16 text-center"
                   >
-                    <IconBadge color={ICON_COLORS.green} className="mx-auto mb-4 h-16 w-16 rounded-full">
+                    <IconBadge color={ICON_COLORS.success} className="mx-auto mb-4 h-16 w-16 rounded-full">
                       <IconCheckCircle />
                     </IconBadge>
-                    <h2 className="heading-md mb-4 text-lad-black">WhatsApp abierto</h2>
+                    <h2 className="heading-lg mb-4 text-lad-black">WhatsApp abierto</h2>
                     <p className="text-lad-gray-mid">
                       Tu mensaje quedó listo para enviarse. Si no se abrió la ventana, usa el botón
                       flotante de WhatsApp.

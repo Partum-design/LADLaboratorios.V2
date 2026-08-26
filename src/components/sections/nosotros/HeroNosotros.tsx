@@ -4,6 +4,7 @@ import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
 import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
+import { EASE } from "@/components/motion/gsap";
 import { motion } from "framer-motion";
 
 export default function HeroNosotros() {
@@ -15,7 +16,7 @@ export default function HeroNosotros() {
           <motion.p
             initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: EASE }}
             className="eyebrow"
           >
             Nosotros
@@ -26,7 +27,7 @@ export default function HeroNosotros() {
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
             className="body-lg mt-6 max-w-2xl"
           >
             Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y

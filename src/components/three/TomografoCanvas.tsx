@@ -143,7 +143,7 @@ function Annotations({
               <span className="h-px w-8 bg-lad-black/30" />
               <span className="glass-card whitespace-nowrap rounded-xl px-4 py-2.5 text-left">
                 <span className="block text-xs font-bold leading-tight text-lad-black">{a.title}</span>
-                <span className="block text-[10px] font-medium text-lad-black/55">{a.sub}</span>
+                <span className="block text-[10px] font-medium text-lad-gray-mid">{a.sub}</span>
               </span>
             </div>
           </div>

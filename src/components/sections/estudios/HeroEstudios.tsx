@@ -6,6 +6,7 @@ import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
 import { IconWhatsApp } from "@/components/ui/LadIcons";
 import { buildWhatsAppLink } from "@/lib/contact";
+import { EASE } from "@/components/motion/gsap";
 import { motion } from "framer-motion";
 
 export default function HeroEstudios() {
@@ -17,7 +18,7 @@ export default function HeroEstudios() {
           <motion.p
             initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: EASE }}
             className="eyebrow"
           >
             Catálogo
@@ -28,7 +29,7 @@ export default function HeroEstudios() {
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
             className="body-lg mt-6 max-w-2xl"
           >
             Consulta nuestro catálogo de más de 500 estudios con precios e indicaciones de
@@ -37,7 +38,7 @@ export default function HeroEstudios() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.62, ease: EASE }}
           >
             <a
               href={buildWhatsAppLink("Hola, tengo una duda sobre un estudio de laboratorio. ¿Me pueden ayudar?")}

@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink } from "@/lib/contact";
+import { EASE } from "@/components/motion/gsap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
@@ -128,7 +129,7 @@ export default function UnetePage() {
             <motion.p
               initial={{ opacity: 0, y: -14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: EASE }}
               className="eyebrow"
             >
               Oportunidades
@@ -139,7 +140,7 @@ export default function UnetePage() {
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
               className="body-lg mt-6 max-w-xl"
             >
               Buscamos personas cuidadosas, puntuales y con buen trato al paciente. Si quieres crecer
@@ -148,7 +149,7 @@ export default function UnetePage() {
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.32, ease: EASE }}
             >
               <a href="#vacantes" className="btn-primary mt-9 inline-flex items-center gap-2">
                 <IconChip color="#ffffff" size="h-5 w-5">
@@ -263,14 +264,14 @@ export default function UnetePage() {
               <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-6 shadow-glass md:p-8">
                 {enviado ? (
                   <div className="py-16 text-center">
-                    <h2 className="heading-md mb-4">WhatsApp abierto</h2>
+                    <h2 className="heading-lg mb-4">WhatsApp abierto</h2>
                     <p className="text-lad-gray-mid">
                       Tu mensaje quedó listo. Si agregaste CV, adjúntalo en el chat antes de enviarlo.
                     </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-5">
-                    <h2 className="heading-md">Postúlate</h2>
+                    <h2 className="heading-lg">Postúlate</h2>
                     <input
                       className={inputCls}
                       name="nombre"

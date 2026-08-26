@@ -88,7 +88,7 @@ function StaticShowcase() {
             <Reveal key={a.title} delay={i * 0.1}>
               <div className="rail-red bg-white p-5 shadow-glass-sm">
                 <p className="text-sm font-bold text-lad-black">{a.title}</p>
-                <p className="mt-1 text-xs text-lad-black/55">{a.sub}</p>
+                <p className="mt-1 text-xs text-lad-gray-mid">{a.sub}</p>
               </div>
             </Reveal>
           ))}

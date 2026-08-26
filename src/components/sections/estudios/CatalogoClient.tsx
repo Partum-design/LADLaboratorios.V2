@@ -102,7 +102,7 @@ export default function CatalogoClient() {
 
         <div className="relative mb-10 max-w-md">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2">
-            <IconChip color={ICON_COLORS.sky} size="h-4 w-4">
+            <IconChip color={ICON_COLORS.graphite} size="h-4 w-4">
               <IconSearch />
             </IconChip>
           </span>
@@ -135,17 +135,17 @@ export default function CatalogoClient() {
                 className="group flex flex-col rounded-2xl border-l-4 border-transparent bg-white p-7 shadow-glass-sm transition-all duration-500 ease-lad hover:-translate-y-1 hover:border-lad-red hover:shadow-glass"
               >
                 <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-lad-red">{estudio.cat}</p>
-                <h3 className="mb-3 font-display text-xl font-bold leading-snug text-lad-black">{estudio.nombre}</h3>
+                <h3 className="mb-3 heading-sm text-lad-black">{estudio.nombre}</h3>
                 <p className="mb-5 text-sm leading-relaxed text-lad-gray-mid">{estudio.desc}</p>
                 <div className="mt-auto grid grid-cols-3 gap-3 border-t border-lad-black/5 pt-4 text-xs text-lad-gray-mid">
                   <span className="flex items-center gap-1">
-                    <IconChip color={ICON_COLORS.sky} size="h-4 w-4">
+                    <IconChip color={ICON_COLORS.graphite} size="h-4 w-4">
                       <IconClock />
                     </IconChip>{" "}
                     {estudio.tipo}
                   </span>
                   <span className="flex items-center gap-1">
-                    <IconChip color={ICON_COLORS.amber} size="h-4 w-4">
+                    <IconChip color={ICON_COLORS.graphite} size="h-4 w-4">
                       <IconClipboard />
                     </IconChip>{" "}
                     {INDICACION_LABEL[estudio.indicacion] ?? estudio.indicacion}
@@ -168,7 +168,7 @@ export default function CatalogoClient() {
                   href={whatsappLinkFor(estudio.nombre, estudio.precio)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 flex items-center justify-center gap-2 rounded-full border border-[#25D366] py-3 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
+                  className="mt-2 flex items-center justify-center gap-2 rounded-full border border-[var(--whatsapp-green)] py-3 text-xs font-bold uppercase tracking-wider text-[var(--whatsapp-green-text)] transition hover:bg-[var(--whatsapp-green)] hover:text-white"
                 >
                   <IconWhatsApp className="h-4 w-4" />
                   Preguntar por WhatsApp

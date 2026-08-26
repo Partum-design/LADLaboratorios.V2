@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { Children, Fragment, useRef, type ElementType, type ReactNode } from "react";
+import { EASE } from "@/components/motion/gsap";
 
 /** Divide los hijos en unidades: cada palabra de texto y cada nodo (span rojo, br...) completo. */
 function toUnits(children: ReactNode): ReactNode[] {
@@ -62,7 +63,7 @@ export default function TextReveal({
               className="inline-block will-change-transform"
               initial={{ y: "115%" }}
               animate={inView ? { y: 0 } : undefined}
-              transition={{ duration: 0.85, delay: delay + i * 0.055, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.85, delay: delay + i * 0.055, ease: EASE }}
             >
               {unit}
             </motion.span>

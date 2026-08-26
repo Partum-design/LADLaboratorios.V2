@@ -29,7 +29,7 @@ export default function CtaBanner() {
           </Reveal>
           <TextReveal
             as="h2"
-            className="heading-xl mx-auto mt-6 max-w-3xl text-white"
+            className="heading-lg mx-auto mt-6 max-w-3xl text-white"
             delay={0.1}
           >
             Agenda tu <span className="italic text-lad-red-light">cita</span>

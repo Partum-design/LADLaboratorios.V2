@@ -2,11 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { EASE } from "@/components/motion/gsap";
 
 interface RevealProps {
   children: React.ReactNode;
   delay?: number;
-  direction?: "up" | "left" | "right" | "none";
+  direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
 }
 
@@ -22,6 +23,7 @@ export default function Reveal({
 
   const initial = {
     up: { opacity: 0, y: 50 },
+    down: { opacity: 0, y: -50 },
     left: { opacity: 0, x: -50 },
     right: { opacity: 0, x: 50 },
     none: { opacity: 0 },
@@ -29,6 +31,7 @@ export default function Reveal({
 
   const animate = {
     up: { opacity: 1, y: 0 },
+    down: { opacity: 1, y: 0 },
     left: { opacity: 1, x: 0 },
     right: { opacity: 1, x: 0 },
     none: { opacity: 1 },
@@ -45,7 +48,7 @@ export default function Reveal({
       ref={ref}
       initial={initial}
       animate={controls}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay, ease: EASE }}
       className={className}
     >
       {children}

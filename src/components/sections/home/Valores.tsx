@@ -46,7 +46,7 @@ export default function Valores() {
                 <IconBadge color={iconColorAt(index)} className="mb-5 h-10 w-10">
                   {valor.icon}
                 </IconBadge>
-                <h3 className="mb-2 font-display text-xl font-bold text-lad-black">{valor.title}</h3>
+                <h3 className="mb-2 heading-sm text-lad-black">{valor.title}</h3>
                 <p className="text-sm leading-relaxed text-lad-gray-mid">{valor.desc}</p>
               </div>
             </Reveal>

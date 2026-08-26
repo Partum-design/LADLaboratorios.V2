@@ -59,7 +59,7 @@ export default function Servicios() {
                     0{index + 1}
                   </span>
                 </div>
-                <h3 className="heading-md mt-8 text-lad-black">{servicio.title}</h3>
+                <h3 className="heading-sm mt-8 text-lad-black">{servicio.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-lad-gray-mid">{servicio.desc}</p>
                 <span className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-lad-red">
                   {servicio.cta}

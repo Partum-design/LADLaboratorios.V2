@@ -3,6 +3,7 @@
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import CustomCursor from "@/components/cursor/CustomCursor";
 import FloatingButtons from "@/components/FloatingButtons";
 import LenisProvider from "@/components/motion/LenisProvider";
 import Footer from "./Footer";
@@ -14,6 +15,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <LenisProvider>
+      <CustomCursor />
       <Preloader />
       <FloatingButtons />
       <ChatbotWidget />

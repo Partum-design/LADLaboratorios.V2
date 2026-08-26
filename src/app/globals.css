@@ -10,10 +10,27 @@
   --lad-gray-light: #f6f3f2;
   --lad-white: #fefefe;
   --ease-lad: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --whatsapp-green: #25d366;
+  --whatsapp-green-dark: #1ebe5a;
+  --whatsapp-green-text: #128c4a;
 }
+
+/*
+ * Convención de contraste: sobre fondos claros/vidrio, el texto mudo usa
+ * text-lad-gray-mid (sólido, ~7.5:1) — nunca text-lad-black/NN en opacidad,
+ * que deja de ser confiable por debajo de ~/70. Sobre fondos oscuros sólidos,
+ * blanco a partir de /80 para texto pequeño.
+ */
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Solo se aplica cuando CustomCursor confirma puntero fino + sin reduced-motion. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none;
 }
 
 html.lenis,
@@ -88,6 +105,10 @@ body {
     @apply font-display text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl;
   }
 
+  .heading-sm {
+    @apply font-display text-xl font-bold leading-snug sm:text-2xl;
+  }
+
   .body-lg {
     @apply text-base leading-relaxed text-lad-gray-mid sm:text-lg;
   }
@@ -113,7 +134,7 @@ body {
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-[1.1rem] text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_40px_-16px_rgba(37,211,102,0.55)] transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:bg-[#1ebe5a] active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-[var(--whatsapp-green)] px-8 py-[1.1rem] text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_40px_-16px_rgba(37,211,102,0.55)] transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:bg-[var(--whatsapp-green-dark)] active:translate-y-0;
   }
 
   .btn-outline-white {

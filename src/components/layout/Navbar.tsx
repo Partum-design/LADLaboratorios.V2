@@ -1,6 +1,7 @@
 "use client";
 
 import { IconMapPin, IconSearch } from "@/components/ui/LadIcons";
+import { EASE } from "@/components/motion/gsap";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +40,7 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.8, ease: EASE }}
       className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3">
@@ -57,10 +58,10 @@ export default function Navbar() {
             className="h-12 w-12 rounded-[22%] object-contain transition duration-500 ease-lad group-hover:rotate-[-6deg] group-hover:scale-95 sm:h-14 sm:w-14"
           />
           <span className="hidden text-center leading-none min-[440px]:block">
-            <span className="block font-display text-[13px] font-bold uppercase tracking-[0.12em] text-lad-black">
+            <span className="block text-[13px] font-bold uppercase tracking-[0.12em] text-lad-black">
               Laboratorio de
             </span>
-            <span className="mt-0.5 block text-[10px] font-medium tracking-wide text-lad-black/55">
+            <span className="mt-0.5 block text-[10px] font-medium tracking-wide text-lad-gray-mid">
               Apoyo y Diagnóstico
             </span>
           </span>
@@ -96,7 +97,7 @@ export default function Navbar() {
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
           <Link
             href="/contacto#sucursales"
-            className={`flex items-center gap-1.5 rounded-full px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-lad-black/60 transition hover:text-lad-red ${glass}`}
+            className={`flex items-center gap-1.5 rounded-full px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-lad-gray-mid transition hover:text-lad-red ${glass}`}
           >
             <IconMapPin className="h-3.5 w-3.5" />
             Sucursales
@@ -107,6 +108,20 @@ export default function Navbar() {
           >
             <IconSearch className="h-4 w-4" />
             Mis resultados
+          </Link>
+        </div>
+
+        {/* Accesos rápidos (móvil): un toque, sin pasar por el menú */}
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          <Link
+            href="/contacto#sucursales"
+            aria-label="Sucursales"
+            className={`flex h-12 w-12 items-center justify-center rounded-full text-lad-black ${glass}`}
+          >
+            <IconMapPin className="h-4 w-4" />
+          </Link>
+          <Link href="/acceder#consulta" aria-label="Mis resultados" className="btn-primary h-12 w-12 !p-0">
+            <IconSearch className="h-4 w-4" />
           </Link>
         </div>
 
@@ -130,7 +145,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: EASE }}
             className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-3xl border border-white/60 bg-white/95 shadow-glass backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col p-5">

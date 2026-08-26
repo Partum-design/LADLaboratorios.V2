@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { EASE } from "@/components/motion/gsap";
 
 const SESSION_KEY = "lad:loaded";
 const RADIUS = 60;
@@ -94,7 +95,7 @@ export default function Preloader() {
               transition={
                 done
                   ? { type: "spring", stiffness: 320, damping: 14 }
-                  : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                  : { duration: 0.6, ease: EASE }
               }
             >
               <Image
@@ -117,10 +118,10 @@ export default function Preloader() {
             {TAGLINE.split("").map((char, i) => (
               <motion.span
                 key={i}
-                className="text-[9px] font-bold tracking-[0.25em] text-lad-black/40 sm:text-[10px]"
+                className="text-[9px] font-bold tracking-[0.25em] text-lad-gray-mid sm:text-[10px]"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 + i * 0.018, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.018, ease: EASE }}
               >
                 {char === " " ? " " : char}
               </motion.span>

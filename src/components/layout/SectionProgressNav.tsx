@@ -47,7 +47,7 @@ export default function SectionProgressNav({ items }: { items: SectionNavItem[] 
               className={`text-[10px] font-bold uppercase tracking-[0.22em] transition-all duration-500 ease-lad ${
                 isActive
                   ? "translate-x-0 text-lad-red opacity-100"
-                  : "translate-x-2 text-lad-black/40 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+                  : "translate-x-2 text-lad-gray-mid opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
               }`}
             >
               {item.label}

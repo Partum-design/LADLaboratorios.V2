@@ -68,7 +68,7 @@ export default function StatsBand() {
               {stat.value}
             </span>
             <span className="mx-auto mt-4 block h-1 w-6 rounded-full bg-lad-red/70" aria-hidden />
-            <span className="mt-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-lad-black/50 sm:text-[11px]">
+            <span className="mt-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-lad-gray-mid sm:text-[11px]">
               {stat.label}
             </span>
           </div>

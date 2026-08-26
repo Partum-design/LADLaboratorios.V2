@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
 
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${manrope.variable} ${cormorant.variable}`}>
       <body>
-        <SiteShell>{children}</SiteShell>
+        <MotionConfig reducedMotion="user">
+          <SiteShell>{children}</SiteShell>
+        </MotionConfig>
       </body>
     </html>
   );

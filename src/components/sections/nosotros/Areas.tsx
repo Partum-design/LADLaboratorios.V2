@@ -99,7 +99,7 @@ export default function Areas() {
                   <IconBadge color={iconColorAt(index)} className="h-12 w-12">
                     {area.icono}
                   </IconBadge>
-                  <h3 className="mt-6 font-display text-3xl font-bold text-lad-black">{area.nombre}</h3>
+                  <h3 className="mt-6 heading-sm text-lad-black">{area.nombre}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-lad-gray-mid">{area.desc}</p>
                   <span className="mt-8 block h-1 w-10 bg-lad-red transition-all duration-500 ease-lad group-hover:w-16" />
                 </div>

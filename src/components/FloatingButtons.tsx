@@ -2,6 +2,7 @@
 
 import { LAD_TEL_LINK, LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
 import { IconPhoneModern, IconWhatsApp } from "@/components/ui/LadIcons";
+import { EASE } from "@/components/motion/gsap";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -35,7 +36,7 @@ export default function FloatingButtons() {
             initial={{ opacity: 0, y: 12, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96, transition: { duration: 0.15 } }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, ease: EASE }}
             className="absolute bottom-full left-0 mb-3 w-64 origin-bottom-left overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-glass backdrop-blur-xl"
           >
             <div className="border-b border-lad-black/5 px-4 py-3">
@@ -48,7 +49,7 @@ export default function FloatingButtons() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-4 py-3 transition hover:bg-lad-gray-light"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--whatsapp-green)] text-white">
                 <IconWhatsApp className="h-[18px] w-[18px]" />
               </span>
               <span className="min-w-0 flex-1">
@@ -82,13 +83,13 @@ export default function FloatingButtons() {
           e.preventDefault();
           setOpen(true);
         }}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-glass transition-all duration-300 hover:scale-105 active:scale-95 sm:h-16 sm:w-16"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[var(--whatsapp-green)] shadow-glass transition-all duration-300 hover:scale-105 active:scale-95 sm:h-16 sm:w-16"
       >
         <motion.span
           aria-hidden="true"
           animate={{ opacity: [0.45, 0], scale: [1, 1.7] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
-          className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366]"
+          className="pointer-events-none absolute inset-0 rounded-full bg-[var(--whatsapp-green)]"
         />
         <IconWhatsApp className="relative z-10 h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110 sm:h-8 sm:w-8" />
       </a>

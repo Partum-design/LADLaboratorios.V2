@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { EASE } from "@/components/motion/gsap";
 import { IconChip } from "@/components/ui/IconBadge";
 import {
   IconCheckCircle,
@@ -48,7 +49,7 @@ function Linea({ etiqueta, valor }: { etiqueta: string; valor: string | null }) 
   if (!valor) return null;
   return (
     <div className="border-t border-lad-black/[0.06] py-3 first:border-t-0 first:pt-0">
-      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/40">{etiqueta}</dt>
+      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">{etiqueta}</dt>
       <dd className="mt-1 text-sm font-medium text-lad-black">{valor}</dd>
     </div>
   );
@@ -101,14 +102,14 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, ease: EASE }}
       className="mt-10 overflow-hidden rounded-3xl bg-white shadow-glass"
     >
       {/* Encabezado */}
       <header className="flex flex-col gap-4 bg-lad-black p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-lad-red-light">Folio {estudio.folio}</p>
-          <h3 className="mt-2 font-display text-2xl font-bold leading-tight sm:text-3xl">
+          <h3 className="mt-2 heading-sm">
             {estudio.estudio.nombre ?? "Estudio de imagen"}
           </h3>
           {estudio.paciente.nombreEnmascarado && (
@@ -272,7 +273,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
       <form onSubmit={consultar} className="rounded-3xl bg-white p-6 shadow-glass sm:p-8" noValidate>
         <div className={`grid gap-5 ${requiereFechaNacimiento ? "sm:grid-cols-2" : ""}`}>
           <div className={requiereFechaNacimiento ? "" : "sm:max-w-xl"}>
-            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
+            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
               Folio o ID de tu estudio
             </label>
             <input
@@ -292,7 +293,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
 
           {requiereFechaNacimiento && (
             <div>
-              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
+              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
                 Fecha de nacimiento del paciente
               </label>
               <input
