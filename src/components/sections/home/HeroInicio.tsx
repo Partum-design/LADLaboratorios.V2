@@ -46,9 +46,9 @@ export default function HeroInicio() {
     <section
       id="inicio"
       ref={heroRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-lad-white pb-20 pt-28 sm:pt-32 lg:pb-24"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[linear-gradient(160deg,#1c0f10_0%,#201e1e_52%,#140b0c_100%)] pb-20 pt-28 sm:pt-32 lg:pb-24"
     >
-      <AmbientGlow />
+      <AmbientGlow variant="dark" />
 
       <div className="container-lad relative z-10 grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
         {/* Columna editorial */}
@@ -63,7 +63,7 @@ export default function HeroInicio() {
               href={LAD_METEPEC_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-lad-red py-2 pl-4 pr-5 text-white shadow-red transition hover:bg-lad-red-dark"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-lad-red py-2 pl-4 pr-5 text-white shadow-[0_16px_50px_-14px_rgba(227,6,19,0.75)] transition hover:bg-lad-red-dark"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
@@ -75,7 +75,7 @@ export default function HeroInicio() {
                 LAD<span className="align-super text-[8px]">®</span> Metepec
               </span>
             </a>
-            <span className="chip">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-white/80 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-lad-red" />
               Precisión diagnóstica
             </span>
@@ -85,18 +85,18 @@ export default function HeroInicio() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="heading-xl mt-8 text-lad-black"
+            className="heading-xl mt-8 text-white lg:text-[6.25rem] xl:text-[7rem]"
           >
             Resultados
             <span
-              className="relative block h-[1.06em] overflow-visible text-lad-red"
+              className="relative block h-[1.06em] overflow-visible"
               style={{ clipPath: "inset(0 -500px)" }}
             >
               &nbsp;
               {heroTitles.map((title, index) => (
                 <motion.span
                   key={index}
-                  className="absolute left-0 top-0 whitespace-nowrap italic"
+                  className="absolute left-0 top-0 whitespace-nowrap bg-gradient-to-r from-lad-red via-lad-plasma to-lad-ember bg-clip-text italic text-transparent drop-shadow-[0_0_55px_rgba(227,6,19,0.35)]"
                   initial={{ opacity: 0, y: -100 }}
                   transition={{ type: "spring", stiffness: 50 }}
                   animate={
@@ -115,7 +115,7 @@ export default function HeroInicio() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="body-lg mt-7 max-w-xl"
+            className="body-lg mt-7 max-w-xl text-white/60"
           >
             Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
             certificados y gente que sí se toma el tiempo de explicarte.
@@ -130,7 +130,7 @@ export default function HeroInicio() {
             <Link href="/estudios#catalogo" className="btn-primary">
               Ver estudios
             </Link>
-            <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">
               Agendar por WhatsApp
             </a>
           </motion.div>
@@ -144,13 +144,13 @@ export default function HeroInicio() {
             transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="hero-media relative"
           >
-            <div className="video-frame relative aspect-[4/5] w-full">
+            <div className="video-frame relative aspect-[4/5] w-full ring-1 ring-white/10 shadow-[0_50px_140px_-35px_rgba(227,6,19,0.55)]">
               <VideoAuto
                 src="/vids/inicio/hero1.mp4"
                 poster="/img/lad-hero-laboratorio.png"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-lad-black/25 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
             </div>
 
             {/* Riel rojo de firma */}
@@ -200,7 +200,7 @@ export default function HeroInicio() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1.5 text-lad-black/30"
+          className="flex flex-col items-center gap-1.5 text-white/35"
         >
           <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
