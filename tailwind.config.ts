@@ -8,8 +8,6 @@ const config: Config = {
         "lad-red": "#E30613",
         "lad-red-dark": "#A63336",
         "lad-red-light": "#F56A6E",
-        "lad-ember": "#FF7A29",
-        "lad-plasma": "#FF2E63",
         "lad-black": "#201E1E",
         "lad-gray-dark": "#302B2B",
         "lad-gray-mid": "#5A5353",

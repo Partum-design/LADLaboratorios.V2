@@ -1,19 +1,19 @@
 "use client";
 
-import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
 import TextReveal from "@/components/motion/TextReveal";
-import { gsap } from "@/components/motion/gsap";
+import { gsap, ScrollTrigger } from "@/components/motion/gsap";
 import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { IconCertificate, IconMapPin } from "@/components/ui/LadIcons";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HeroInicio() {
   const heroRef = useRef<HTMLElement>(null);
+  const videoScaleRef = useRef<HTMLDivElement>(null);
   const [titleNumber, setTitleNumber] = useState(0);
 
   useEffect(() => {
@@ -23,118 +23,129 @@ export default function HeroInicio() {
     return () => clearTimeout(timeoutId);
   }, [titleNumber]);
 
+  // Zoom cinematográfico del video de fondo al hacer scroll (tipo parallax).
   useLayoutEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
+    const section = heroRef.current;
+    const videoEl = videoScaleRef.current;
+    if (!section || !videoEl) return;
+
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.to(".hero-media", {
-          yPercent: 10,
-          ease: "none",
-          scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true },
-        });
-        gsap.to(".hero-copy", {
-          yPercent: -6,
-          ease: "none",
-          scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true },
-        });
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          videoEl,
+          { scale: 1.04 },
+          {
+            scale: 1.28,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
       });
-    }, el);
+      ScrollTrigger.refresh();
+    }, section);
+
     return () => ctx.revert();
   }, []);
-
-  // Tilt 3D sutil del marco de video al mover el mouse (desktop, sensación premium).
-  const tiltX = useMotionValue(0);
-  const tiltY = useMotionValue(0);
-  const springX = useSpring(tiltX, { stiffness: 150, damping: 22 });
-  const springY = useSpring(tiltY, { stiffness: 150, damping: 22 });
-
-  function handleTiltMove(e: MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    tiltX.set(py * -5);
-    tiltY.set(px * 5);
-  }
-  function handleTiltLeave() {
-    tiltX.set(0);
-    tiltY.set(0);
-  }
 
   return (
     <section
       id="inicio"
       ref={heroRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-lad-white pb-20 pt-28 sm:pt-32 lg:pb-24"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-lad-black"
     >
-      <AmbientGlow />
+      {/* Video de fondo a pantalla completa, con zoom progresivo al hacer scroll */}
+      <div className="absolute inset-0" aria-hidden>
+        <div ref={videoScaleRef} className="h-full w-full will-change-transform">
+          <VideoAuto
+            src="/vids/inicio/hero1.mp4"
+            poster="/img/lad-hero-laboratorio.png"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        {/* Velo para legibilidad: negro con acento rojo, sin naranjas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-t from-lad-red/15 via-transparent to-transparent" />
+      </div>
 
-      <div className="container-lad relative z-10 grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
-        {/* Columna editorial */}
-        <div className="hero-copy lg:col-span-7">
-          {/* Anuncio de sucursal: primera pieza de información, con foco propio */}
-          <motion.a
+      {/* Contenido centrado */}
+      <div className="container-lad relative z-10 flex flex-col items-center px-4 pb-10 pt-24 text-center sm:pt-28">
+        {/* Sucursal e ISO: mismo peso visual, lado a lado */}
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-wrap items-center justify-center gap-3"
+        >
+          <a
             href={LAD_METEPEC_MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="group relative flex max-w-md items-center gap-4 overflow-hidden rounded-2xl border border-lad-black/10 bg-white py-3 pl-3 pr-4 shadow-glass-sm transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:border-lad-red/25 hover:shadow-glass"
+            className="group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left backdrop-blur-md transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/15"
           >
-            <motion.span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/80 to-transparent"
-              initial={{ x: "-40%" }}
-              animate={{ x: "480%" }}
-              transition={{ duration: 1.3, delay: 1, ease: "easeInOut" }}
-            />
-            <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-lad-red text-white shadow-red">
-              <IconMapPin className="h-5 w-5" />
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lad-red text-white">
+              <IconMapPin className="h-3.5 w-3.5" />
             </span>
-            <span className="relative min-w-0">
-              <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.22em] text-lad-red">
+            <span className="leading-tight">
+              <span className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.22em] text-white/70">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lad-red opacity-60" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lad-red opacity-70" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lad-red" />
                 </span>
                 Nueva sucursal
               </span>
-              <span className="mt-0.5 block truncate font-display text-[15px] font-semibold leading-tight text-lad-black">
-                LAD<span className="align-super text-[8px]">®</span> Metepec ya está abierta
+              <span className="block text-[13px] font-semibold text-white">
+                LAD<span className="align-super text-[7px]">®</span> Metepec ya está abierta
               </span>
             </span>
-            <span className="relative ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lad-gray-light text-lad-black transition-all duration-500 ease-lad group-hover:bg-lad-red group-hover:text-white">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </span>
-          </motion.a>
+          </a>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="eyebrow mt-7"
+          <a
+            href="#valores"
+            className="group flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left backdrop-blur-md transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/15"
           >
-            Precisión diagnóstica
-          </motion.p>
+            <span className="relative flex h-7 w-7 shrink-0 items-center justify-center">
+              <motion.svg
+                viewBox="0 0 24 24"
+                className="absolute inset-0 h-full w-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              >
+                <circle cx="12" cy="12" r="10.5" fill="none" stroke="#E30613" strokeWidth="1.4" strokeDasharray="2.2 3.4" />
+              </motion.svg>
+              <IconCertificate className="relative h-3.5 w-3.5 text-lad-red" />
+            </span>
+            <span className="leading-tight">
+              <span className="block text-[9px] font-black uppercase tracking-[0.22em] text-white/70">Certificados</span>
+              <span className="block text-[13px] font-semibold text-white">ISO 9001:2015</span>
+            </span>
+          </a>
+        </motion.div>
 
-          <h1 className="heading-xl mt-5 text-lad-black lg:text-[5.75rem] xl:text-[6.25rem]">
-            <TextReveal as="span" className="block" delay={0.28}>
-              Resultados
-            </TextReveal>
-            <span
-              className="relative mt-1 block h-[1.06em] overflow-visible text-lad-red"
-              style={{ clipPath: "inset(0 -500px)" }}
-            >
-              &nbsp;
-              {heroTitles.map((title, index) => (
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="eyebrow mt-9 justify-center text-white/80 before:bg-lad-red"
+        >
+          Precisión diagnóstica
+        </motion.p>
+
+        <h1 className="heading-xl mt-5 text-center text-white">
+          <TextReveal as="span" className="block" delay={0.3}>
+            Resultados
+          </TextReveal>
+          <span className="relative mt-1 block h-[1.06em] overflow-visible" style={{ clipPath: "inset(0 -500px)" }}>
+            &nbsp;
+            {heroTitles.map((title, index) => (
+              <span key={index} className="absolute left-1/2 top-0 -translate-x-1/2">
                 <motion.span
-                  key={index}
-                  className="absolute left-0 top-0 whitespace-nowrap italic"
+                  className="block whitespace-nowrap italic text-lad-red"
                   initial={{ opacity: 0, y: -100 }}
                   transition={{ type: "spring", stiffness: 50 }}
                   animate={
@@ -146,118 +157,41 @@ export default function HeroInicio() {
                   {title}
                   {titleNumber === index && (
                     <motion.span
-                      className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-lad-red/35"
+                      className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-lad-red/50"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                     />
                   )}
                 </motion.span>
-              ))}
-            </span>
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="body-lg mt-7 max-w-xl"
-          >
-            Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
-            certificados y gente que sí se toma el tiempo de explicarte.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <Link href="/estudios#catalogo" className="btn-primary">
-              Ver estudios
-            </Link>
-            <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              Agendar por WhatsApp
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Columna de medios con chips flotantes */}
-        <div className="relative lg:col-span-5">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hero-media relative"
-          >
-            {/* Halo suave detrás del marco, como luz de estudio */}
-            <div className="absolute -inset-8 -z-[1] rounded-[3rem] bg-lad-red/[0.08] blur-3xl" aria-hidden />
-
-            <motion.div
-              onMouseMove={handleTiltMove}
-              onMouseLeave={handleTiltLeave}
-              style={{ rotateX: springX, rotateY: springY, transformPerspective: 1200 }}
-              className="relative aspect-[4/5] w-full rounded-[2rem] bg-white p-2 shadow-glass ring-1 ring-lad-black/[0.04]"
-            >
-              <div className="video-frame relative h-full w-full overflow-hidden rounded-[1.5rem]">
-                <VideoAuto
-                  src="/vids/inicio/hero1.mp4"
-                  poster="/img/lad-hero-laboratorio.png"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-lad-black/25 via-transparent to-transparent" />
-              </div>
-            </motion.div>
-
-            {/* Riel rojo de firma */}
-            <span className="absolute -left-3 bottom-8 top-8 w-1 bg-lad-red" aria-hidden />
-
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-card absolute -left-8 top-8 hidden items-center gap-3 rounded-2xl px-5 py-4 sm:flex"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-lad-red/10 font-display text-sm font-bold text-lad-red">
-                24/7
               </span>
-              <span className="text-xs font-semibold leading-tight text-lad-black">
-                Rayos X y tomografía
-                <span className="block text-[10px] font-medium text-lad-black/50">los 365 días del año</span>
-              </span>
-            </motion.div>
+            ))}
+          </span>
+        </h1>
 
-            {/* Sello de certificación ISO: anillo giratorio + núcleo fijo */}
-            <motion.a
-              href="#valores"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              className="absolute -right-5 bottom-8 hidden h-24 w-24 items-center justify-center sm:flex sm:h-28 sm:w-28"
-              aria-label="Certificación ISO 9001:2015 — ver más en Valores"
-            >
-              <motion.svg
-                viewBox="0 0 100 100"
-                className="absolute inset-0 h-full w-full drop-shadow-[0_10px_24px_rgba(227,6,19,0.18)]"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-              >
-                <defs>
-                  <path id="iso-seal-ring" d="M50,50 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" fill="none" />
-                </defs>
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#E30613" strokeWidth="0.6" strokeDasharray="1.4 3.4" opacity="0.45" />
-                <text fontSize="5.6" fontWeight="700" letterSpacing="1.6" fill="#E30613">
-                  <textPath href="#iso-seal-ring" xlinkHref="#iso-seal-ring" startOffset="0%">
-                    ISO 9001:2015 • SISTEMA DE GESTIÓN DE CALIDAD •{" "}
-                  </textPath>
-                </text>
-              </motion.svg>
-              <div className="relative flex h-[66%] w-[66%] flex-col items-center justify-center rounded-full bg-white text-center shadow-glass ring-1 ring-lad-black/5">
-                <IconCertificate className="h-6 w-6 text-lad-red" />
-                <span className="mt-0.5 font-display text-[13px] font-bold leading-none text-lad-black">ISO 9001</span>
-                <span className="text-[8px] font-semibold uppercase tracking-wide text-lad-black/45">2015</span>
-              </div>
-            </motion.a>
-          </motion.div>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="body-lg mx-auto mt-7 max-w-xl text-white/70"
+        >
+          Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
+          certificados y gente que sí se toma el tiempo de explicarte.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
+          <Link href="/estudios#catalogo" className="btn-primary">
+            Ver estudios
+          </Link>
+          <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">
+            Agendar por WhatsApp
+          </a>
+        </motion.div>
       </div>
 
       {/* Indicador de scroll */}
@@ -265,12 +199,12 @@ export default function HeroInicio() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1.5 text-lad-black/30"
+          className="flex flex-col items-center gap-1.5 text-white/50"
         >
           <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
