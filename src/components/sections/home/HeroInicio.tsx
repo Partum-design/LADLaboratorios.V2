@@ -5,9 +5,9 @@ import TextReveal from "@/components/motion/TextReveal";
 import { gsap, ScrollTrigger } from "@/components/motion/gsap";
 import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { IconCertificate, IconMapPin } from "@/components/ui/LadIcons";
-import { motion } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
@@ -53,10 +53,27 @@ export default function HeroInicio() {
     return () => ctx.revert();
   }, []);
 
+  // Halo blanco que sigue el cursor: capa técnica y elegante sobre el video.
+  const spotX = useMotionValue(-400);
+  const spotY = useMotionValue(-400);
+  const spotlightBg = useMotionTemplate`radial-gradient(560px circle at ${spotX}px ${spotY}px, rgba(255,255,255,0.14), transparent 72%)`;
+
+  function handleHeroMouseMove(e: MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    spotX.set(e.clientX - rect.left);
+    spotY.set(e.clientY - rect.top);
+  }
+  function handleHeroMouseLeave() {
+    spotX.set(-400);
+    spotY.set(-400);
+  }
+
   return (
     <section
       id="inicio"
       ref={heroRef}
+      onMouseMove={handleHeroMouseMove}
+      onMouseLeave={handleHeroMouseLeave}
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-lad-black"
     >
       {/* Video de fondo a pantalla completa, con zoom progresivo al hacer scroll */}
@@ -71,6 +88,10 @@ export default function HeroInicio() {
         {/* Velo para legibilidad: negro con acento rojo, sin naranjas */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/75" />
         <div className="absolute inset-0 bg-gradient-to-t from-lad-red/15 via-transparent to-transparent" />
+        {/* Halo que sigue el cursor */}
+        <motion.div className="absolute inset-0 z-[1]" style={{ background: spotlightBg }} />
+        {/* Overlay blanco: funde el pie del hero con la sección siguiente */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-lad-white sm:h-40" />
       </div>
 
       {/* Contenido centrado */}
@@ -82,11 +103,13 @@ export default function HeroInicio() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-wrap items-center justify-center gap-3"
         >
-          <a
+          <motion.a
             href={LAD_METEPEC_MAPS_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left backdrop-blur-md transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/15"
+            whileHover={{ y: -3, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 320, damping: 18 }}
+            className="group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left shadow-[0_0_0_0_rgba(227,6,19,0)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-lad hover:border-white/50 hover:bg-white/15 hover:shadow-[0_18px_40px_-16px_rgba(227,6,19,0.55)]"
           >
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lad-red text-white">
               <IconMapPin className="h-3.5 w-3.5" />
@@ -103,11 +126,13 @@ export default function HeroInicio() {
                 LAD<span className="align-super text-[7px]">®</span> Metepec ya está abierta
               </span>
             </span>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
             href="#valores"
-            className="group flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left backdrop-blur-md transition-all duration-500 ease-lad hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/15"
+            whileHover={{ y: -3, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 320, damping: 18 }}
+            className="group flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left shadow-[0_0_0_0_rgba(227,6,19,0)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-lad hover:border-white/50 hover:bg-white/15 hover:shadow-[0_18px_40px_-16px_rgba(227,6,19,0.55)]"
           >
             <span className="relative flex h-7 w-7 shrink-0 items-center justify-center">
               <motion.svg
@@ -124,7 +149,7 @@ export default function HeroInicio() {
               <span className="block text-[9px] font-black uppercase tracking-[0.22em] text-white/70">Certificados</span>
               <span className="block text-[13px] font-semibold text-white">ISO 9001:2015</span>
             </span>
-          </a>
+          </motion.a>
         </motion.div>
 
         <motion.p
@@ -136,7 +161,7 @@ export default function HeroInicio() {
           Precisión diagnóstica
         </motion.p>
 
-        <h1 className="heading-xl mt-5 text-center text-white">
+        <h1 className="heading-xl mt-5 text-center text-white drop-shadow-[0_4px_28px_rgba(0,0,0,0.4)]">
           <TextReveal as="span" className="block" delay={0.3}>
             Resultados
           </TextReveal>
@@ -204,7 +229,7 @@ export default function HeroInicio() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-1.5 text-white/50"
+          className="flex flex-col items-center gap-1.5 text-lad-black/35"
         >
           <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">

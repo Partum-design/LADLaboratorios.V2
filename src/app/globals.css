@@ -77,19 +77,19 @@ body {
   }
 
   .heading-xl {
-    @apply font-display text-5xl font-semibold leading-[0.98] tracking-[-0.02em] sm:text-6xl lg:text-[5.25rem];
+    @apply text-balance font-display text-5xl font-semibold leading-[0.96] tracking-[-0.025em] text-lad-black sm:text-6xl lg:text-[5.25rem];
   }
 
   .heading-lg {
-    @apply font-display text-4xl font-semibold leading-[1.02] tracking-[-0.015em] sm:text-5xl lg:text-6xl;
+    @apply text-balance font-display text-4xl font-semibold leading-[1] tracking-[-0.02em] text-lad-black sm:text-5xl lg:text-6xl;
   }
 
   .heading-md {
-    @apply font-display text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl;
+    @apply text-balance font-display text-2xl font-semibold leading-[1.08] tracking-[-0.01em] text-lad-black sm:text-3xl lg:text-4xl;
   }
 
   .body-lg {
-    @apply text-base leading-relaxed text-lad-gray-mid sm:text-lg;
+    @apply text-pretty text-base leading-[1.7] text-lad-gray-mid sm:text-lg;
   }
 
   .btn-primary {
