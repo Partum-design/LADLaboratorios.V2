@@ -54,7 +54,7 @@ const areas = [
 /** Cards apiladas: cada área se queda pegada y la siguiente la cubre al hacer scroll. */
 export default function Areas() {
   return (
-    <section className="section-padding relative overflow-hidden bg-white">
+    <section className="section-padding relative bg-white">
       <AmbientGlow />
       <div className="container-lad relative z-10">
         <Reveal className="text-center">

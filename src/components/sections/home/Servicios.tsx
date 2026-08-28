@@ -35,7 +35,7 @@ const servicios = [
 
 export default function Servicios() {
   return (
-    <section id="servicios" className="section-padding relative overflow-hidden bg-lad-gray-light">
+    <section id="servicios" className="section-padding relative bg-lad-gray-light">
       <AmbientGlow />
       {/* Imagen ambiental: técnica, muy tenue, se funde con el fondo */}
       <div
