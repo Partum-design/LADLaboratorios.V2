@@ -43,7 +43,7 @@ export default function Footer() {
                 <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnóstico</p>
               </div>
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-gray-400">
+            <p className="max-w-xs text-sm leading-relaxed text-white/55">
               Diagnóstico clínico con procesos certificados, trato claro y resultados listos para tomar decisiones médicas.
             </p>
             <div className="flex items-center gap-2">
@@ -55,18 +55,18 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook de LAD Tenancingo"
-              className="group inline-flex h-10 w-10 items-center justify-center border border-white/15 text-gray-300 transition hover:border-lad-red hover:text-lad-red"
+              className="group inline-flex h-10 w-10 items-center justify-center border border-white/15 text-white/70 transition hover:border-lad-red hover:text-lad-red"
             >
               <IconFacebook className="h-4 w-4" />
             </a>
           </div>
 
           <div>
-            <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500">Navegación</h4>
+            <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-white/55">Navegación</h4>
             <ul className="space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="group flex items-center gap-2 text-sm text-gray-300 transition hover:text-lad-red">
+                  <Link href={link.href} className="group flex items-center gap-2 text-sm text-white/70 transition hover:text-lad-red">
                     <span className="block h-px w-0 bg-lad-red transition-all group-hover:w-4" />
                     {link.label}
                   </Link>
@@ -76,8 +76,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500">Contacto</h4>
-            <ul className="space-y-4 text-sm text-gray-300">
+            <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-white/55">Contacto</h4>
+            <ul className="space-y-4 text-sm text-white/70">
               <li>
                 <a href={LAD_TEL_LINK} className="transition hover:text-lad-red">
                   {LAD_PHONE_DISPLAY}
@@ -88,7 +88,7 @@ export default function Footer() {
                   WhatsApp para citas y dudas
                 </a>
               </li>
-              <li className="border-l-2 border-lad-red pl-3 text-gray-400">Rayos X y tomografía: 24/7, los 365 días.</li>
+              <li className="border-l-2 border-lad-red pl-3 text-white/55">Rayos X y tomografía: 24/7, los 365 días.</li>
               <li>
                 <a
                   href={LAD_MAPS_LINK}
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
-          <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500">Nuestras sucursales</h4>
+          <h4 className="mb-6 text-[11px] font-bold uppercase tracking-[0.28em] text-white/55">Nuestras sucursales</h4>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {LAD_SUCURSALES.map((sucursal) => (
               <div key={sucursal.slug} className="border border-white/10 p-4 transition hover:border-lad-red/50">
@@ -118,8 +118,8 @@ export default function Footer() {
                     Matriz
                   </span>
                 )}
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">{sucursal.direccion}</p>
-                <p className="mt-2 text-xs text-gray-500">
+                <p className="mt-2 text-xs leading-relaxed text-white/55">{sucursal.direccion}</p>
+                <p className="mt-2 text-xs text-white/55">
                   {sucursal.horario.map((linea) => (
                     <span key={linea} className="block">{linea}</span>
                   ))}
@@ -136,7 +136,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-white/10 pt-8">
           <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <h4 className="text-[11px] font-bold uppercase tracking-[0.28em] text-gray-500">
+            <h4 className="text-[11px] font-bold uppercase tracking-[0.28em] text-white/55">
               Portal del personal — Ecosistema eden
             </h4>
             <Link href="/acceder#personal" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
@@ -152,21 +152,21 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="group border border-white/10 px-3 py-3 transition hover:border-lad-red"
               >
-                <EdenMark suffix={portal.suffix} size="h-3.5 w-3.5" textClassName="text-xs text-gray-300 group-hover:text-white" />
+                <EdenMark suffix={portal.suffix} size="h-3.5 w-3.5" textClassName="text-xs text-white/70 group-hover:text-white" />
               </a>
             ))}
           </div>
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-white/55">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnóstico. Todos los derechos reservados.
           </p>
           <a
             href="https://partumdesign.com.mx"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] font-bold uppercase tracking-[0.35em] text-gray-600 transition hover:text-lad-red"
+            className="text-[10px] font-bold uppercase tracking-[0.35em] text-white/55 transition hover:text-lad-red"
           >
             Partum Design
           </a>

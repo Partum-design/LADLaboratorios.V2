@@ -40,7 +40,7 @@ export default function PagoEnLineaForm() {
       <div className="rounded-3xl bg-white p-6 text-center shadow-glass sm:p-8">
         <IconChip color={ICON_COLORS.red} size="h-8 w-8"><IconCreditCard /></IconChip>
         <h3 className="mt-4 font-display text-lg font-bold text-lad-black">Estamos afinando el pago en línea</h3>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-lad-gray-mid">
           En lo que activamos el cobro con tarjeta directo en el sitio, escríbenos por WhatsApp y te ayudamos a pagar tu
           estudio ahí mismo.
         </p>
@@ -69,9 +69,9 @@ export default function PagoEnLineaForm() {
           {resultado.estado === "en_proceso" && "Pago en revisión"}
           {resultado.estado === "rechazado" && "No pudimos procesar tu pago"}
         </h3>
-        <p className="mt-2 text-sm text-gray-600">{resultado.mensaje}</p>
+        <p className="mt-2 text-sm text-lad-gray-mid">{resultado.mensaje}</p>
         {resultado.idOperacion && (
-          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-gray-400">
+          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-lad-gray-mid">
             Operación #{resultado.idOperacion}
           </p>
         )}
@@ -95,7 +95,7 @@ export default function PagoEnLineaForm() {
       >
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
-            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-500">
+            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
               ¿Qué vas a pagar?
             </label>
             <input
@@ -107,7 +107,7 @@ export default function PagoEnLineaForm() {
             />
           </div>
           <div>
-            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-500">
+            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
               Monto a pagar (MXN)
             </label>
             <input
@@ -120,7 +120,7 @@ export default function PagoEnLineaForm() {
             />
           </div>
           <div>
-            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-500">
+            <label className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
               Folio (opcional)
             </label>
             <input
@@ -140,20 +140,20 @@ export default function PagoEnLineaForm() {
 
   return (
     <div className="rounded-3xl bg-white p-6 shadow-glass sm:p-8">
-      <div className="mb-6 flex flex-col gap-3 border-b border-gray-100 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-6 flex flex-col gap-3 border-b border-lad-black/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-400">Vas a pagar</p>
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">Vas a pagar</p>
           <p className="mt-1 font-display text-lg font-bold text-lad-black">{descripcion}</p>
         </div>
         <div className="flex items-center gap-3">
           <p className="font-display text-2xl font-black text-lad-red">${montoNumerico.toLocaleString("es-MX")}</p>
-          <button type="button" onClick={() => setConfirmado(false)} className="text-xs font-bold uppercase tracking-wider text-gray-400 underline hover:text-lad-red">
+          <button type="button" onClick={() => setConfirmado(false)} className="text-xs font-bold uppercase tracking-wider text-lad-gray-mid underline hover:text-lad-red">
             Editar
           </button>
         </div>
       </div>
 
-      <div className="mb-4 flex items-center gap-2 text-xs text-gray-400">
+      <div className="mb-4 flex items-center gap-2 text-xs text-lad-gray-mid">
         <IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconShieldCheck /></IconChip>
         Tus datos bancarios se procesan directo con Mercado Pago; LAD nunca los almacena.
       </div>
@@ -186,7 +186,7 @@ export default function PagoEnLineaForm() {
         }}
         onError={() => setError("Revisa los datos de tu tarjeta e inténtalo de nuevo.")}
       />
-      {procesando && <p className="mt-3 text-center text-sm text-gray-500">Procesando tu pago…</p>}
+      {procesando && <p className="mt-3 text-center text-sm text-lad-gray-mid">Procesando tu pago…</p>}
     </div>
   );
 }

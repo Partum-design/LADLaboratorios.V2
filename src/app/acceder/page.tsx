@@ -127,7 +127,7 @@ export default function AccederPage() {
                         {portal.resumen}
                       </p>
                     </div>
-                    <span className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <span className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/55">
                       <IconChip color="currentColor" size="h-4 w-4">
                         <IconLogin />
                       </IconChip>

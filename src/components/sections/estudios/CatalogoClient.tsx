@@ -164,21 +164,24 @@ export default function CatalogoClient() {
                   <IconCreditCard className="h-4 w-4" />
                   Pagar este estudio
                 </Link>
-                <a
-                  href={whatsappLinkFor(estudio.nombre, estudio.precio)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 flex items-center justify-center gap-2 rounded-full border border-[#25D366] py-3 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
-                >
-                  <IconWhatsApp className="h-4 w-4" />
-                  Preguntar por WhatsApp
-                </a>
-                <Link
-                  href={`/contacto?estudio=${encodeURIComponent(estudio.nombre)}#agenda`}
-                  className="mt-2 text-center text-[11px] font-semibold text-lad-gray-mid underline-offset-2 hover:text-lad-red hover:underline"
-                >
-                  o pregunta con el formulario de contacto
-                </Link>
+                <div className="mt-3 flex items-center justify-center gap-3 text-[11px] font-semibold text-lad-gray-mid">
+                  <a
+                    href={whatsappLinkFor(estudio.nombre, estudio.precio)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 underline-offset-2 hover:text-[#128C4A] hover:underline"
+                  >
+                    <IconWhatsApp className="h-3.5 w-3.5" />
+                    WhatsApp
+                  </a>
+                  <span className="h-3 w-px bg-lad-black/10" aria-hidden />
+                  <Link
+                    href={`/contacto?estudio=${encodeURIComponent(estudio.nombre)}#agenda`}
+                    className="underline-offset-2 hover:text-lad-red hover:underline"
+                  >
+                    Formulario de contacto
+                  </Link>
+                </div>
               </motion.article>
             ))}
           </AnimatePresence>

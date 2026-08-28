@@ -153,7 +153,7 @@ export default function ChatbotWidget() {
               ))}
               {enviando && (
                 <div className="flex justify-start">
-                  <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm text-gray-400 shadow-[0_1px_2px_rgba(11,20,26,0.12)]">
+                  <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm text-lad-gray-mid shadow-[0_1px_2px_rgba(11,20,26,0.12)]">
                     Escribiendo…
                   </div>
                 </div>
@@ -166,7 +166,7 @@ export default function ChatbotWidget() {
                 value={texto}
                 onChange={(evento) => setTexto(evento.target.value)}
                 placeholder="Escribe tu pregunta…"
-                className="min-w-0 flex-1 rounded-full border border-gray-200 px-4 py-2.5 text-sm outline-none transition focus:border-lad-red"
+                className="min-w-0 flex-1 rounded-full border border-lad-black/10 px-4 py-2.5 text-sm outline-none transition focus:border-lad-red"
               />
               <button
                 type="submit"

@@ -51,7 +51,7 @@ export default function RutasRapidas() {
                   <span className="block font-display text-xl font-bold transition-colors duration-300 group-hover:text-lad-red-light">
                     {ruta.title}
                   </span>
-                  <span className="mt-3 block text-sm leading-relaxed text-gray-400">{ruta.desc}</span>
+                  <span className="mt-3 block text-sm leading-relaxed text-white/55">{ruta.desc}</span>
                 </span>
               </Link>
             </Reveal>

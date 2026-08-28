@@ -48,7 +48,7 @@ function Linea({ etiqueta, valor }: { etiqueta: string; valor: string | null }) 
   if (!valor) return null;
   return (
     <div className="border-t border-lad-black/[0.06] py-3 first:border-t-0 first:pt-0">
-      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/40">{etiqueta}</dt>
+      <dt className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">{etiqueta}</dt>
       <dd className="mt-1 text-sm font-medium text-lad-black">{valor}</dd>
     </div>
   );
@@ -57,7 +57,7 @@ function Linea({ etiqueta, valor }: { etiqueta: string; valor: string | null }) 
 function Progreso({ etapa }: { etapa: EtapaEstudio }) {
   if (etapa === "cancelado") {
     return (
-      <div className="rounded-r-xl border-l-4 border-gray-400 bg-gray-100 px-5 py-4 text-sm font-semibold text-gray-600">
+      <div className="rounded-r-xl border-l-4 border-lad-black/20 bg-lad-gray-light px-5 py-4 text-sm font-semibold text-lad-gray-mid">
         Esta orden fue cancelada.
       </div>
     );
@@ -78,7 +78,7 @@ function Progreso({ etapa }: { etapa: EtapaEstudio }) {
             />
             <span
               className={`text-[0.65rem] font-bold uppercase tracking-[0.16em] ${
-                esActual ? "text-lad-red" : alcanzado ? "text-lad-black" : "text-gray-400"
+                esActual ? "text-lad-red" : alcanzado ? "text-lad-black" : "text-lad-gray-mid"
               }`}
             >
               {paso.titulo}
@@ -112,16 +112,16 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
             {estudio.estudio.nombre ?? "Estudio de imagen"}
           </h3>
           {estudio.paciente.nombreEnmascarado && (
-            <p className="mt-2 text-sm text-gray-400">
-              Paciente: <span className="font-semibold text-gray-200">{estudio.paciente.nombreEnmascarado}</span>
-              {estudio.paciente.edad !== null && <span className="text-gray-500"> · {estudio.paciente.edad} años</span>}
+            <p className="mt-2 text-sm text-white/55">
+              Paciente: <span className="font-semibold text-white/85">{estudio.paciente.nombreEnmascarado}</span>
+              {estudio.paciente.edad !== null && <span className="text-white/60"> · {estudio.paciente.edad} años</span>}
             </p>
           )}
         </div>
         <span
           className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider ${
             cancelado
-              ? "border-gray-500 text-gray-300"
+              ? "border-white/30 text-white/70"
               : listo
                 ? "border-lad-red bg-lad-red text-white"
                 : "border-white/30 text-white"
@@ -137,7 +137,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
       <div className="space-y-8 p-6 sm:p-8">
         <div>
           {estudio.etapa && <Progreso etapa={estudio.etapa} />}
-          <p className={`text-sm leading-relaxed text-gray-600 ${estudio.etapa ? "mt-4" : ""}`}>{estudio.estatusDetalle}</p>
+          <p className={`text-sm leading-relaxed text-lad-gray-mid ${estudio.etapa ? "mt-4" : ""}`}>{estudio.estatusDetalle}</p>
         </div>
 
         <dl className={`grid grid-cols-1 gap-x-10 sm:grid-cols-2 ${estudio.origen === "visor" ? "hidden" : ""}`}>
@@ -154,7 +154,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
         {/* Descargas y visor */}
         {(estudio.documentos.length > 0 || estudio.visorUrl) && (
           <div className="border-t border-lad-black/[0.06] pt-6">
-            <p className="mb-4 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-gray-400">Disponible para ti</p>
+            <p className="mb-4 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">Disponible para ti</p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               {estudio.documentos.map((documento) => {
                 const enlace = new URLSearchParams(parametros);
@@ -193,7 +193,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
         {!listo && !cancelado && estudio.origen === "orden" && (
           <div className="flex items-start gap-3 rounded-2xl bg-lad-gray-light p-4">
             <IconChip color={ICON_COLORS.red} size="h-5 w-5"><IconClock /></IconChip>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-lad-gray-mid">
               Tus resultados aparecerán aquí en cuanto el médico radiólogo firme el reporte. Puedes volver a consultar
               este folio las veces que necesites.
             </p>
@@ -272,7 +272,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
       <form onSubmit={consultar} className="rounded-3xl bg-white p-6 shadow-glass sm:p-8" noValidate>
         <div className={`grid gap-5 ${requiereFechaNacimiento ? "sm:grid-cols-2" : ""}`}>
           <div className={requiereFechaNacimiento ? "" : "sm:max-w-xl"}>
-            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
+            <label htmlFor={idFolio} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
               Folio o ID de tu estudio
             </label>
             <input
@@ -292,7 +292,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
 
           {requiereFechaNacimiento && (
             <div>
-              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-black/45">
+              <label htmlFor={idFecha} className="mb-2 block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-lad-gray-mid">
                 Fecha de nacimiento del paciente
               </label>
               <input
@@ -313,7 +313,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
             <IconChip color="#ffffff" size="h-4 w-4"><IconSearch /></IconChip>
             {cargando ? "Consultando…" : "Consultar estudio"}
           </button>
-          <p className="flex items-center gap-2 text-xs text-gray-500">
+          <p className="flex items-center gap-2 text-xs text-lad-gray-mid">
             <IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconShieldCheck /></IconChip>
             Consulta directa y cifrada al expediente de LAD.
           </p>
@@ -349,13 +349,13 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
             <div key={paso.titulo} className="rounded-2xl bg-white p-5 shadow-glass-sm">
               <IconChip color={ICON_COLORS.red} size="h-6 w-6">{paso.icono}</IconChip>
               <p className="mt-3 font-display text-sm font-bold uppercase tracking-wide text-lad-black">{paso.titulo}</p>
-              <p className="mt-1 text-sm leading-relaxed text-gray-500">{paso.texto}</p>
+              <p className="mt-1 text-sm leading-relaxed text-lad-gray-mid">{paso.texto}</p>
             </div>
           ))}
         </div>
       )}
 
-      <p className="mt-8 flex items-start gap-2 text-xs leading-relaxed text-gray-500">
+      <p className="mt-8 flex items-start gap-2 text-xs leading-relaxed text-lad-gray-mid">
         <IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconMapPin /></IconChip>
         ¿No encuentras tu folio o necesitas ayuda para interpretar tu reporte? Comunícate con nosotros: te atendemos en
         sucursal, por teléfono o por WhatsApp.

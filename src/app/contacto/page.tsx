@@ -240,7 +240,7 @@ function ContactoBody() {
                 {horarios.map((h) => (
                   <div key={h.dia} className="flex justify-between border-b border-lad-black/5 py-2 text-sm">
                     <span className="text-lad-gray-mid">{h.dia}</span>
-                    <span className={h.hora === "Cerrado" ? "text-gray-400" : "font-semibold text-lad-red"}>
+                    <span className={h.hora === "Cerrado" ? "text-lad-gray-mid" : "font-semibold text-lad-red"}>
                       {h.hora}
                     </span>
                   </div>
@@ -509,7 +509,7 @@ function ContactoBody() {
                                 }
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-full bg-lad-black px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-lad-red"
+                                className="inline-flex items-center gap-2 rounded-full bg-lad-black px-4 py-2 text-xs font-bold text-white shadow-glass-sm transition hover:bg-lad-red"
                               >
                                 <IconMapPin className="h-4 w-4" />
                                 Ver mapa
@@ -517,7 +517,7 @@ function ContactoBody() {
                               {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
                                 <a
                                   href={sucursal.telefonoTelLink}
-                                  className="inline-flex items-center gap-2 rounded-full bg-[#0d9488] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#0f766e]"
+                                  className="inline-flex items-center gap-2 rounded-full border border-lad-red px-4 py-2 text-xs font-bold text-lad-red shadow-glass-sm transition hover:bg-lad-red hover:text-white"
                                 >
                                   <IconPhone className="h-4 w-4" />
                                   {sucursal.telefonoDisplay}
