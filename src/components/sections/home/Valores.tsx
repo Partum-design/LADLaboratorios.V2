@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { IconCheck, IconFocus, IconShieldCheck, IconUsers } from "@/components/ui/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
@@ -43,6 +44,7 @@ const isoPuntos = [
 export default function Valores() {
   return (
     <section id="valores" className="section-padding relative overflow-hidden bg-white">
+      <AmbientGlow />
       {/* Imagen ambiental: técnica, muy tenue, se funde con el fondo */}
       <div
         className="pointer-events-none absolute -bottom-24 -left-20 h-[420px] w-[420px] opacity-[0.07] grayscale sm:h-[520px] sm:w-[520px]"

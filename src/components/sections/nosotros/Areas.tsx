@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import { IconBadge } from "@/components/ui/IconBadge";
 import {
   IconCulture,
@@ -53,8 +54,9 @@ const areas = [
 /** Cards apiladas: cada área se queda pegada y la siguiente la cubre al hacer scroll. */
 export default function Areas() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-lad">
+    <section className="section-padding relative overflow-hidden bg-white">
+      <AmbientGlow />
+      <div className="container-lad relative z-10">
         <Reveal className="text-center">
           <p className="eyebrow justify-center">Infraestructura</p>
         </Reveal>

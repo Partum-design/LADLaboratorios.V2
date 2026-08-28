@@ -2,13 +2,15 @@
 
 import Reveal from "@/components/motion/Reveal";
 import Parallax from "@/components/motion/Parallax";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import VideoAuto from "@/components/ui/VideoAuto";
 import Link from "next/link";
 
 export default function QuienesSomos() {
   return (
-    <section id="quienes-somos" className="section-padding bg-white">
-      <div className="container-lad grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20">
+    <section id="quienes-somos" className="section-padding relative overflow-hidden bg-white">
+      <AmbientGlow />
+      <div className="container-lad relative z-10 grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20">
         {/* Texto sticky en desktop */}
         <div className="order-2 lg:order-1">
           <div className="lg:sticky lg:top-32">

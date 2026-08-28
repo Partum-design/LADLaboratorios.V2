@@ -2,6 +2,7 @@
 
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import AmbientGlow from "@/components/ui/AmbientGlow";
 import { IconBadge } from "@/components/ui/IconBadge";
 import { IconPackage, IconPhone, IconTestTubes } from "@/components/ui/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
@@ -35,6 +36,7 @@ const servicios = [
 export default function Servicios() {
   return (
     <section id="servicios" className="section-padding relative overflow-hidden bg-lad-gray-light">
+      <AmbientGlow />
       {/* Imagen ambiental: técnica, muy tenue, se funde con el fondo */}
       <div
         className="pointer-events-none absolute -right-20 -top-24 h-[440px] w-[440px] opacity-[0.08] grayscale sm:h-[560px] sm:w-[560px]"

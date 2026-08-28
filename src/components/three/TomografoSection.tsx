@@ -2,6 +2,7 @@
 
 import { gsap, ScrollTrigger } from "@/components/motion/gsap";
 import Reveal from "@/components/motion/Reveal";
+import ParticleField from "@/components/ui/ParticleField";
 import Image from "next/image";
 import Link from "next/link";
 import { Component, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
@@ -61,8 +62,9 @@ function PosterFallback() {
 
 function StaticShowcase() {
   return (
-    <section id="tomografo" className="section-padding overflow-hidden bg-lad-gray-light">
-      <div className="container-lad">
+    <section id="tomografo" className="section-padding relative overflow-hidden bg-lad-gray-light">
+      <ParticleField />
+      <div className="container-lad relative z-10">
         <Reveal>
           <p className="eyebrow">Imagenología</p>
           <h2 className="heading-lg mt-5">
@@ -172,6 +174,7 @@ export default function TomografoSection() {
       <div ref={wrapRef} className="relative h-[350vh]">
         <div ref={stageRef} className="relative h-screen w-full overflow-hidden">
           {/* Fondo */}
+          <ParticleField />
           <div
             className="absolute -left-20 top-0 h-[420px] w-[420px] rounded-full opacity-[0.06]"
             style={{ background: "radial-gradient(circle, #E30613 0%, transparent 68%)" }}
