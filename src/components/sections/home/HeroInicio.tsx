@@ -2,22 +2,14 @@
 
 import VideoAuto from "@/components/ui/VideoAuto";
 import TextReveal from "@/components/motion/TextReveal";
-import EcgSignature from "@/components/ui/EcgSignature";
-import VitalsTicker from "@/components/ui/VitalsTicker";
 import { gsap, ScrollTrigger } from "@/components/motion/gsap";
-import { LAD_WHATSAPP_LINK } from "@/lib/contact";
+import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
+import { IconCertificate, IconMapPin } from "@/components/ui/LadIcons";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
-
-const vitals = [
-  { value: "Metepec", label: "Sucursal nueva, abierta", live: true },
-  { value: "40+", label: "Años de experiencia" },
-  { value: "500+", label: "Estudios disponibles" },
-  { value: "ISO 9001", label: "Sistema de calidad" },
-];
 
 export default function HeroInicio() {
   const heroRef = useRef<HTMLElement>(null);
@@ -82,7 +74,7 @@ export default function HeroInicio() {
       ref={heroRef}
       onMouseMove={handleHeroMouseMove}
       onMouseLeave={handleHeroMouseLeave}
-      className="relative flex min-h-screen flex-col overflow-hidden bg-lad-black"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-lad-black"
     >
       {/* Video de fondo a pantalla completa, con zoom progresivo al hacer scroll */}
       <div className="absolute inset-0" aria-hidden>
@@ -93,103 +85,157 @@ export default function HeroInicio() {
             className="h-full w-full object-cover"
           />
         </div>
-        {/* Velo para legibilidad: negro con acento rojo, más denso a la izquierda para el texto asimétrico */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
+        {/* Velo para legibilidad: negro con acento rojo, sin naranjas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/75" />
         <div className="absolute inset-0 bg-gradient-to-t from-lad-red/15 via-transparent to-transparent" />
         {/* Halo que sigue el cursor */}
         <motion.div className="absolute inset-0 z-[1]" style={{ background: spotlightBg }} />
+        {/* Overlay blanco: funde el pie del hero con la sección siguiente */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-lad-white sm:h-40" />
       </div>
 
-      {/* Contenido: bloque asimétrico, alineado a la izquierda */}
-      <div className="container-lad relative z-10 flex flex-1 flex-col justify-center px-4 pb-8 pt-32 sm:pt-36">
-        <div className="max-w-3xl">
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="eyebrow text-white/80 before:bg-lad-red"
+      {/* Contenido centrado */}
+      <div className="container-lad relative z-10 flex flex-col items-center px-4 pb-10 pt-24 text-center sm:pt-28">
+        {/* Sucursal e ISO: mismo peso visual, lado a lado */}
+        <motion.div
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-wrap items-center justify-center gap-3"
+        >
+          <motion.a
+            href={LAD_METEPEC_MAPS_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ y: -3, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 320, damping: 18 }}
+            className="group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left shadow-[0_0_0_0_rgba(227,6,19,0)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-lad hover:border-white/50 hover:bg-white/15 hover:shadow-[0_18px_40px_-16px_rgba(227,6,19,0.55)]"
           >
-            Precisión diagnóstica
-          </motion.p>
-
-          <h1 className="heading-xl mt-5 text-left text-white drop-shadow-[0_4px_28px_rgba(0,0,0,0.4)] lg:text-[6rem] xl:text-[7rem]">
-            <TextReveal as="span" className="block" delay={0.3}>
-              Resultados
-            </TextReveal>
-            <span className="relative mt-1 block h-[1.06em] overflow-visible" style={{ clipPath: "inset(0 -500px)" }}>
-              &nbsp;
-              {heroTitles.map((title, index) => (
-                <span key={index} className="absolute left-0 top-0">
-                  <motion.span
-                    className="block whitespace-nowrap italic text-lad-red"
-                    initial={{ opacity: 0, y: -100 }}
-                    transition={{ type: "spring", stiffness: 50 }}
-                    animate={
-                      titleNumber === index
-                        ? { y: 0, opacity: 1 }
-                        : { y: titleNumber > index ? -150 : 150, opacity: 0 }
-                    }
-                  >
-                    {title}
-                    {titleNumber === index && (
-                      <motion.span
-                        className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-lad-red/50"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                      />
-                    )}
-                  </motion.span>
-                </span>
-              ))}
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lad-red text-white">
+              <IconMapPin className="h-3.5 w-3.5" />
             </span>
-          </h1>
+            <span className="leading-tight">
+              <span className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.22em] text-white/70">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lad-red opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-lad-red" />
+                </span>
+                Nueva sucursal
+              </span>
+              <span className="block text-[13px] font-semibold text-white">
+                LAD<span className="align-super text-[7px]">®</span> Metepec ya está abierta
+              </span>
+            </span>
+          </motion.a>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="body-lg mt-7 max-w-xl text-left text-white/70"
+          <motion.a
+            href="#valores"
+            whileHover={{ y: -3, scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 320, damping: 18 }}
+            className="group flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 py-2.5 pl-3 pr-4 text-left shadow-[0_0_0_0_rgba(227,6,19,0)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-lad hover:border-white/50 hover:bg-white/15 hover:shadow-[0_18px_40px_-16px_rgba(227,6,19,0.55)]"
           >
-            Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
-            certificados y gente que sí se toma el tiempo de explicarte.
-          </motion.p>
+            <span className="relative flex h-7 w-7 shrink-0 items-center justify-center">
+              <motion.svg
+                viewBox="0 0 24 24"
+                className="absolute inset-0 h-full w-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              >
+                <circle cx="12" cy="12" r="10.5" fill="none" stroke="#E30613" strokeWidth="1.4" strokeDasharray="2.2 3.4" />
+              </motion.svg>
+              <IconCertificate className="relative h-3.5 w-3.5 text-lad-red" />
+            </span>
+            <span className="leading-tight">
+              <span className="block text-[9px] font-black uppercase tracking-[0.22em] text-white/70">Certificados</span>
+              <span className="block text-[13px] font-semibold text-white">ISO 9001:2015</span>
+            </span>
+          </motion.a>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
-            <Link href="/estudios#catalogo" className="btn-primary">
-              Ver estudios
-            </Link>
-            <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">
-              Agendar por WhatsApp
-            </a>
-          </motion.div>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="eyebrow mt-9 justify-center text-white/80 before:bg-lad-red"
+        >
+          Precisión diagnóstica
+        </motion.p>
+
+        <h1 className="heading-xl mt-5 text-center text-white drop-shadow-[0_4px_28px_rgba(0,0,0,0.4)]">
+          <TextReveal as="span" className="block" delay={0.3}>
+            Resultados
+          </TextReveal>
+          <span className="relative mt-1 block h-[1.06em] overflow-visible" style={{ clipPath: "inset(0 -500px)" }}>
+            &nbsp;
+            {heroTitles.map((title, index) => (
+              <span key={index} className="absolute left-1/2 top-0 -translate-x-1/2">
+                <motion.span
+                  className="block whitespace-nowrap italic text-lad-red"
+                  initial={{ opacity: 0, y: -100 }}
+                  transition={{ type: "spring", stiffness: 50 }}
+                  animate={
+                    titleNumber === index
+                      ? { y: 0, opacity: 1 }
+                      : { y: titleNumber > index ? -150 : 150, opacity: 0 }
+                  }
+                >
+                  {title}
+                  {titleNumber === index && (
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-lad-red/50"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  )}
+                </motion.span>
+              </span>
+            ))}
+          </span>
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="body-lg mx-auto mt-7 max-w-xl text-white/70"
+        >
+          Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos
+          certificados y gente que sí se toma el tiempo de explicarte.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        >
+          <Link href="/estudios#catalogo" className="btn-primary">
+            Ver estudios
+          </Link>
+          <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-outline-white">
+            Agendar por WhatsApp
+          </a>
+        </motion.div>
       </div>
 
-      {/* Firma: traza de ECG que pasa de señal irregular a latido estable */}
+      {/* Indicador de scroll */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="relative z-10 hidden sm:block"
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
-        <EcgSignature className="h-16 w-full lg:h-20" />
-      </motion.div>
-
-      {/* Monitor de signos vitales: sucursal, experiencia, catálogo, certificación */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10"
-      >
-        <VitalsTicker items={vitals} />
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-1.5 text-lad-black/35"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </motion.div>
       </motion.div>
     </section>
   );
