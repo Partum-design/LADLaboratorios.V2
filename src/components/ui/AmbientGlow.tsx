@@ -1,8 +1,10 @@
+import ParticleField from "@/components/ui/ParticleField";
+
 /**
- * Fondo ambiental con movimiento: halos de luz que derivan lentamente en vez
- * de quedarse estáticos. Paleta estrictamente blanco/rojo (sin ámbar ni
- * magenta). La variante "dark" suma una retícula de puntos (guiño a las
- * placas de diagnóstico) y un barrido tipo escaneo.
+ * Fondo ambiental: en fondos oscuros, halos de luz en deriva lenta más
+ * retícula de puntos y barrido tipo escaneo. En fondos claros, una red de
+ * nodos que se conectan entre sí y con el cursor — así ninguna cabecera
+ * blanca queda completamente vacía.
  */
 export default function AmbientGlow({ variant = "hero" }: { variant?: "hero" | "dark" }) {
   if (variant === "dark") {
@@ -51,24 +53,7 @@ export default function AmbientGlow({ variant = "hero" }: { variant?: "hero" | "
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute -right-24 -top-32 h-[440px] w-[440px] sm:h-[560px] sm:w-[560px]">
-        <div
-          className="h-full w-full animate-aurora-a rounded-full opacity-[0.09]"
-          style={{ background: "radial-gradient(circle, #E30613 0%, transparent 68%)" }}
-        />
-      </div>
-      <div className="absolute -bottom-40 -left-20 h-[380px] w-[380px] sm:h-[460px] sm:w-[460px]">
-        <div
-          className="h-full w-full animate-aurora-b rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(circle, #A63336 0%, transparent 70%)" }}
-        />
-      </div>
-      <div className="absolute left-1/3 top-1/2 h-[320px] w-[320px] -translate-y-1/2">
-        <div
-          className="h-full w-full animate-aurora-c rounded-full opacity-[0.045]"
-          style={{ background: "radial-gradient(circle, #E30613 0%, transparent 72%)" }}
-        />
-      </div>
+      <ParticleField />
     </div>
   );
 }
